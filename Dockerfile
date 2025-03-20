@@ -1,13 +1,19 @@
-FROM python:3.9
+# Base image
+FROM node:18
 
+# Set working directory
 WORKDIR /app
 
-COPY requirements.txt . 
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy files
+COPY package*.json ./
+COPY server.js ./
 
-COPY . .
+# Install dependencies
+RUN npm install
 
-ENV PYTHONUNBUFFERED=1
+# Expose port
+EXPOSE 3000
 
-CMD ["python", "app.py"]
+# Start the server
+CMD ["node", "server.js"]
 
