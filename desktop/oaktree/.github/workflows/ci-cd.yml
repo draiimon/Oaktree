@@ -1,0 +1,47 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: |
+          pip install -r flask-app/requirements.txt  # Change this path if needed
+
+      - name: Run Tests
+        run: |
+          pytest flask-app/tests/  # Update if using a different framework
+
+  build-docker:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.dckr_pat_UdknxBJs2nV5H0oagBO--W0mOJM
+ }}" | docker login -u "${{ secrets.draiimon112 }}" --password-stdin 
+
+      - name: Build Docker image
+        run: docker build -t your-dockerhub-username/oaktree:latest .
+
+      - name: Push Docker image
+        run: docker push your-dockerhub-username/oaktree:latest
+
