@@ -1,22 +1,22 @@
-# Use an official Node.js runtime as the base image
-FROM node:18
+# Use the official Next.js image or Node.js base image
+FROM node:18-alpine
 
-# Set the working directory
+# Set working directory
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Copy package.json and install dependencies
 COPY package.json package-lock.json ./
 RUN npm install
 
-# Copy the rest of the application
+# Copy all files
 COPY . .
 
-# Build the Next.js app
+# Build the Next.js application
 RUN npm run build
 
-# Expose port 3000
+# Expose port
 EXPOSE 3000
 
-# Start the application
+# Start the app
 CMD ["npm", "run", "start"]
 
