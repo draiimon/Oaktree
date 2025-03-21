@@ -1,0 +1,39 @@
+name: Staging CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to main branch
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+  deploy-staging:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print Staging API URL
+        run: echo "Staging API URL: ${{ secrets.STAGING_API_URL }}"
+
+      - name: Deploy to Staging
+        run: |
+          echo "Deploying to Staging Environment..."
+          # Add deployment commands here (e.g., SSH into server and deploy)
