@@ -1,4 +1,4 @@
-# Week 3: Cloud Services & Infrastructure as Code - 1 (March 24, 2025)
+# Week 3: Cloud Services & Infrastructure as Code - Day 1 (March 24, 2025)
 
 ## Introduction
 
