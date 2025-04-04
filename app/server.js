@@ -30,11 +30,12 @@ app.get('/', (req, res) => {
         <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
           <div class="p-6">
             <div class="flex justify-between items-center mb-6">
-              <h1 class="text-2xl font-bold text-gray-800">Server Information</h1>
+              <h1 class="text-2xl font-bold text-gray-800">HELLO OAKTREE INNOVATION!</h1>
               <span class="px-3 py-1 rounded-full ${isEcs ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}">
                 ${isEcs ? 'AWS ECS' : 'Local Development'}
               </span>
             </div>
+            <div class="mb-4 text-xl text-center font-semibold text-indigo-600">Real Cloud Deployment Information</div>
             
             <div class="space-y-4">
               <div class="border-b pb-2">
@@ -87,6 +88,14 @@ app.get('/', (req, res) => {
                 </div>
               </div>
             </div>
+          </div>
+          <div class="p-4 bg-gray-50 border-t">
+            <p class="text-center text-gray-600 text-sm">
+              &copy; 2023 Oaktree Innovation | Real Cloud Application | Deployment Date: ${new Date().toLocaleDateString()}
+            </p>
+            <p class="text-center text-gray-500 text-xs mt-1">
+              This is a real application deployed using Terraform and AWS ECS
+            </p>
           </div>
         </div>
       </div>
