@@ -1,0 +1,43 @@
+~/workspace$ git filter-branch --force --index-filter "git rm -rf --cached --ignore-unmatch attached_assets/Pasted--fatal-unable-to-auto-detect-email-address-got-runner-f602f79822a0-none-recovery-mode-ho-1743759429519.txt" --prune-empty --tag-name-filter cat -- --all
+WARNING: git-filter-branch has a glut of gotchas generating mangled history
+     rewrites.  Hit Ctrl-C before proceeding to abort, then use an
+     alternative filtering tool such as 'git filter-repo'
+     (https://github.com/newren/git-filter-repo/) instead.  See the
+     filter-branch manual page for more details; to squelch this warning,
+     set FILTER_BRANCH_SQUELCH_WARNING=1.
+Proceeding with filter-branch...
+
+Rewrite 8287493ba7085b60872c6a21b4611b518b083601 (59/95) (3 seconds passed, remaining 1 predicted)    rm 'attached_assets/Pasted--fatal-unable-to-auto-detect-email-address-got-runner-f602f79822a0-none-recovery-mode-ho-1743759429519.txt'
+Rewrite 44d703731925840b911c785ade9cc12dc308abe6 (59/95) (3 seconds passed, remaining 1 predicted)    rm 'attached_assets/Pasted--fatal-unable-to-auto-detect-email-address-got-runner-f602f79822a0-none-recovery-mode-ho-1743759429519.txt'
+Rewrite f688f7ef46a019ed386baf7eb3cfaadc89dad8cd (59/95) (3 seconds passed, remaining 1 predicted)    rm 'attached_assets/Pasted--fatal-unable-to-auto-detect-email-address-got-runner-f602f79822a0-none-recovery-mode-ho-1743759429519.txt'
+Rewrite 8967bc23b80ae40477909cbee7f5234dbb7194ec (59/95) (3 seconds passed, remaining 1 predicted)    rm 'attached_assets/Pasted--fatal-unable-to-auto-detect-email-address-got-runner-f602f79822a0-none-recovery-mode-ho-1743759429519.txt'
+Rewrite bd168703daad036968b8acebfe6d36274dab3c33 (59/95) (3 seconds passed, remaining 1 predicted)    rm 'attached_assets/Pasted--fatal-unable-to-auto-detect-email-address-got-runner-f602f79822a0-none-recovery-mode-ho-1743759429519.txt'
+Rewrite 0eeac212e030f28b9b219f76c6d00c98110c21f4 (59/95) (3 seconds passed, remaining 1 predicted)    rm 'attached_assets/Pasted--fatal-unable-to-auto-detect-email-address-got-runner-f602f79822a0-none-recovery-mode-ho-1743759429519.txt'
+Rewrite 47d285fe87da62086ba3b707584012b1a3d8d394 (59/95) (3 seconds passed, remaining 1 predicted)    rm 'attached_assets/Pasted--fatal-unable-to-auto-detect-email-address-got-runner-f602f79822a0-none-recovery-mode-ho-1743759429519.txt'
+Rewrite 8fa5acd0ed9b975acf2b19f90b0e75951a344a90 (79/95) (5 seconds passed, remaining 1 predicted)    rm 'attached_assets/Pasted--fatal-unable-to-auto-detect-email-address-got-runner-f602f79822a0-none-recovery-mode-ho-1743759429519.txt'
+Rewrite 7c8c2acd5b74379a990667992f859b01d4542d03 (79/95) (5 seconds passed, remaining 1 predicted)    rm 'attached_assets/Pasted--fatal-unable-to-auto-detect-email-address-got-runner-f602f79822a0-none-recovery-mode-ho-1743759429519.txt'
+Rewrite 350404f48c5cac2f8e1e4bc083421550600c16dc (79/95) (5 seconds passed, remaining 1 predicted)    rm 'attached_assets/Pasted--fatal-unable-to-auto-detect-email-address-got-runner-f602f79822a0-none-recovery-mode-ho-1743759429519.txt'
+Rewrite bb1d1fd5ae4dc25e32525f3dd15a2015b69f8bc2 (95/95) (5 seconds passed, remaining 0 predicted)    
+Ref 'refs/heads/Week-3' was rewritten
+Ref 'refs/heads/fresh-week3' was rewritten
+Ref 'refs/heads/main' was rewritten
+Ref 'refs/heads/replit-agent' was rewritten
+WARNING: Ref 'refs/remotes/origin/Week-3' is unchanged
+Ref 'refs/remotes/origin/containerization' was rewritten
+Ref 'refs/remotes/origin/main' was rewritten
+Ref 'refs/remotes/origin/week-2' was rewritten
+Ref 'refs/remotes/origin/week2' was rewritten
+Ref 'refs/replit/agent-ledger' was rewritten
+~/workspace$ git push -f origin Week-3
+Enumerating objects: 288, done.
+Counting objects: 100% (288/288), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (234/234), done.
+Writing objects: 100% (279/279), 1.41 MiB | 2.86 MiB/s, done.
+Total 279 (delta 117), reused 54 (delta 25), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (117/117), completed with 3 local objects.
+To https://github.com/draiimon/Oaktree.git
+ + 275effe...7ad346a Week-3 -> Week-3 (forced update)
+~/workspace$ 
+
+
