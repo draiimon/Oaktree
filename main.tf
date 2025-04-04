@@ -1,10 +1,6 @@
 // AWS Cloud Infrastructure with Terraform
 // Main configuration file
 
-provider "aws" {
-  region = var.aws_region
-}
-
 // VPC and Networking Module
 module "networking" {
   source = "./modules/networking"
@@ -12,7 +8,7 @@ module "networking" {
   vpc_cidr             = var.vpc_cidr
   public_subnet_cidrs  = var.public_subnet_cidrs
   private_subnet_cidrs = var.private_subnet_cidrs
-  availability_zones   = var.availability_zones
+  azs                  = var.availability_zones
   environment          = var.environment
 }
 

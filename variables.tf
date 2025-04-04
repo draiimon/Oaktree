@@ -41,16 +41,14 @@ variable "availability_zones" {
 variable "app_names" {
   description = "Names of the applications to deploy"
   type        = list(string)
-  default     = ["fastapi-app", "flask-app", "nextjs-app"]
+  default     = ["js-cloud-app"]
 }
 
 variable "app_ports" {
   description = "Ports that the applications listen on"
   type        = map(number)
   default     = {
-    "fastapi-app" = 8000
-    "flask-app"   = 5000
-    "nextjs-app"  = 3000
+    "js-cloud-app" = 3000
   }
 }
 

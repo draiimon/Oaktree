@@ -1,0 +1,82 @@
+
+> # Create CloudWatch Log Group
+> resource "aws_cloudwatch_log_group" "app_logs" {
+inition.app_task.arn
+  >   name              = "/ecs/app-task"
+>   retention_in_days = 7
+> }
+>
+> # Create ECS Service
+> resource "aws_ecs_service" "app_service" {
+>   name            = "app-service"
+>   cluster         = aws_ecs_cluster.app_cluster.id
+>   task_definition = aws_ecs_task_definition.app_task.arn
+>   desired_count   = 1
+>   launch_type     = "FARGATE"
+>
+>   network_configuration {
+>     subnets          = aws_subnet.public.*.id
+>     security_groups  = [aws_security_group.app_sg.id]
+  assign>     assign_public_ip = true
+>   }
+> }
+>
+> # Output the ECR Repository URL
+> output "ecr_repository_url" {
+>   value = aws_ecr_repository.app_repo.repository_url
+> }
+>
+> # Output the Task Definition ARN
+> output "task_definition_arn" {
+>   value = aws_ecs_task_definition.app_task.arn
+> }
+> EOF
+rae@Rae:~/simple-js-cloud-app$ terraform init
+-bash: /snap/bin/terraform: No such file or directory
+rae@Rae:~/simple-js-cloud-app$ terraform plan -out=tfplan
+-bash: /snap/bin/terraform: No such file or directory
+rae@Rae:~/simple-js-cloud-app$ # Install Terraform completely
+O- httprae@Rae:~/simple-js-cloud-app$ wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+cho "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install terraform--2025-04-04 19:09:33--  https://apt.releases.hashicorp.com/gpg
+File '/usr/share/keyrings/hashicorp-archive-keyring.gpg' exists. echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install terraformOverwrite? (y/N) echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+Enter new filename: sudo apt update && sudo apt install terraformResolving apt.releases.hashicorp.com (apt.releases.hashicorp.com)... 18.172.21.43, 18.172.21.119, 18.172.21.123, ...
+                                                                Connecting to apt.releases.hashicorp.com (apt.releases.hashicorp.com)|18.172.21.43|:443... connected.
+                                                HTTP request sent, awaiting response... 200 OK
+                                                                                              Length: 3980 (3.9K) [binary/octet-stream]
+                  Saving to: ‘STDOUT’
+
+-                             100%[==============================================>]   3.89K  --.-KB/s    in 0s
+
+                                                                                                                    2025-04-04 19:09:35 (209 MB/s) - written to stdout [3980/3980]
+
+                                                             # Go to your simple JS app directory
+imple-js-cloud-app
+
+# Initialize Terraform
+terraform init
+
+# Plan the deployment
+terraform plan -out=tfplan
+
+# Apply the plan (only after checking it)
+terraform apply tfplanrae@Rae:~/simple-js-cloud-app$
+rae@Rae:~/simple-js-cloud-app$ # Go to your simple JS app directory
+rae@Rae:~/simple-js-cloud-app$ cd ~/simple-js-cloud-app
+nitialirae@Rae:~/simple-js-cloud-app$
+ze Terrrae@Rae:~/simple-js-cloud-app$ # Initialize Terraform
+rraform rae@Rae:~/simple-js-cloud-app$ terraform init
+ Plan the deployment
+terraform -bash: /snap/bin/terraform: No such file or directory
+rae@Rae:~/simple-js-cloud-app$
+plan -ourae@Rae:~/simple-js-cloud-app$ # Plan the deployment
+rae@Rae:~/simple-js-cloud-app$ terraform plan -out=tfplan
+ply the -bash: /snap/bin/terraform: No such file or directory
+rae@Rae:~/simple-js-cloud-app$
+rae@Rae:~/simple-js-cloud-app$ # Apply the plan (only after checking it)
+terraforrae@Rae:~/simple-js-cloud-app$ terraform apply tfplan
+-bash: /snap/bin/terraform: No such file or directory
+rae@Rae:~/simple-js-cloud-app$
+
+

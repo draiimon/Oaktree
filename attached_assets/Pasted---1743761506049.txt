@@ -1,0 +1,98 @@
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Saved the plan to: tfplan
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "tfplan"
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ terraform apply tfplan
+module.ecs.aws_cloudwatch_log_group.app["fastapi-app"]: Creating...
+module.networking.aws_eip.nat: Creating...
+module.networking.aws_vpc.main: Creating...
+module.ecs.aws_cloudwatch_log_group.app["nextjs-app"]: Creating...
+module.ecr.aws_ecr_repository.app["flask-app"]: Creating...
+module.ecs.aws_cloudwatch_log_group.app["flask-app"]: Creating...
+module.ecr.aws_ecr_repository.app["nextjs-app"]: Creating...
+module.ecs.aws_iam_role.ecs_task_execution_role: Creating...
+module.ecr.aws_ecr_repository.app["fastapi-app"]: Creating...
+module.ecs.aws_ecs_cluster.main: Creating...
+╷
+│ Error: creating ECR Repository (dev-fastapi-app): operation error ECR: CreateRepository, https response error StatusCode: 400, RequestID: e6bb5484-64bc-4900-82f1-4158046b5ee9, api error AccessDeniedException: User: arn:aws:iam::321225686735:user/draiimon is not authorized to perform: ecr:CreateRepository on resource: arn:aws:ecr:ap-southeast-1:321225686735:repository/dev-fastapi-app because no identity-based policy allows the ecr:CreateRepository action
+│
+│   with module.ecr.aws_ecr_repository.app["fastapi-app"],
+│   on modules/ecr/main.tf line 3, in resource "aws_ecr_repository" "app":
+│    3: resource "aws_ecr_repository" "app" {
+│
+╵
+╷
+│ Error: creating ECR Repository (dev-nextjs-app): operation error ECR: CreateRepository, https response error StatusCode: 400, RequestID: a46aa28b-2621-49e0-95e4-8d7eb080aeb2, api error AccessDeniedException: User: arn:aws:iam::321225686735:user/draiimon is not authorized to perform: ecr:CreateRepository on resource: arn:aws:ecr:ap-southeast-1:321225686735:repository/dev-nextjs-app because no identity-based policy allows the ecr:CreateRepository action
+│
+│   with module.ecr.aws_ecr_repository.app["nextjs-app"],
+│   on modules/ecr/main.tf line 3, in resource "aws_ecr_repository" "app":
+│    3: resource "aws_ecr_repository" "app" {
+│
+╵
+╷
+│ Error: creating ECR Repository (dev-flask-app): operation error ECR: CreateRepository, https response error StatusCode: 400, RequestID: dd8bdcc8-c204-4738-9b21-be0770d4c670, api error AccessDeniedException: User: arn:aws:iam::321225686735:user/draiimon is not authorized to perform: ecr:CreateRepository on resource: arn:aws:ecr:ap-southeast-1:321225686735:repository/dev-flask-app because no identity-based policy allows the ecr:CreateRepository action
+│
+│   with module.ecr.aws_ecr_repository.app["flask-app"],
+│   on modules/ecr/main.tf line 3, in resource "aws_ecr_repository" "app":
+│    3: resource "aws_ecr_repository" "app" {
+│
+╵
+╷
+│ Error: creating ECS Cluster (dev-cluster): operation error ECS: CreateCluster, https response error StatusCode: 400, RequestID: 9399b22c-37fa-469d-8d5f-4174dd58aa0b, api error AccessDeniedException: User: arn:aws:iam::321225686735:user/draiimon is not authorized to perform: ecs:CreateCluster on resource: arn:aws:ecs:ap-southeast-1:321225686735:cluster/dev-cluster because no identity-based policy allows the ecs:CreateCluster action
+│
+│   with module.ecs.aws_ecs_cluster.main,
+│   on modules/ecs/main.tf line 4, in resource "aws_ecs_cluster" "main":
+│    4: resource "aws_ecs_cluster" "main" {
+│
+╵
+╷
+│ Error: creating IAM Role (dev-ecs-task-execution-role): operation error IAM: CreateRole, https response error StatusCode: 403, RequestID: b8aa263f-216a-440e-9060-d7972683b16b, api error AccessDenied: User: arn:aws:iam::321225686735:user/draiimon is not authorized to perform: iam:CreateRole on resource: arn:aws:iam::321225686735:role/dev-ecs-task-execution-role because no identity-based policy allows the iam:CreateRole action
+│
+│   with module.ecs.aws_iam_role.ecs_task_execution_role,
+│   on modules/ecs/main.tf line 108, in resource "aws_iam_role" "ecs_task_execution_role":
+│  108: resource "aws_iam_role" "ecs_task_execution_role" {
+│
+╵
+╷
+│ Error: creating CloudWatch Logs Log Group (/ecs/dev-nextjs-app): operation error CloudWatch Logs: CreateLogGroup, https response error StatusCode: 400, RequestID: e9e64461-67c3-46e3-ac12-eecbfd7f8a25, api error AccessDeniedException: User: arn:aws:iam::321225686735:user/draiimon is not authorized to perform: logs:CreateLogGroup on resource: arn:aws:logs:ap-southeast-1:321225686735:log-group:/ecs/dev-nextjs-app:log-stream: because no identity-based policy allows the logs:CreateLogGroup action
+│
+│   with module.ecs.aws_cloudwatch_log_group.app["nextjs-app"],
+│   on modules/ecs/main.tf line 209, in resource "aws_cloudwatch_log_group" "app":
+│  209: resource "aws_cloudwatch_log_group" "app" {
+│
+╵
+╷
+│ Error: creating CloudWatch Logs Log Group (/ecs/dev-fastapi-app): operation error CloudWatch Logs: CreateLogGroup, https response error StatusCode: 400, RequestID: c033155e-fed5-450d-ac57-6b09741d4045, api error AccessDeniedException: User: arn:aws:iam::321225686735:user/draiimon is not authorized to perform: logs:CreateLogGroup on resource: arn:aws:logs:ap-southeast-1:321225686735:log-group:/ecs/dev-fastapi-app:log-stream: because no identity-based policy allows the logs:CreateLogGroup action
+│
+│   with module.ecs.aws_cloudwatch_log_group.app["fastapi-app"],
+│   on modules/ecs/main.tf line 209, in resource "aws_cloudwatch_log_group" "app":
+│  209: resource "aws_cloudwatch_log_group" "app" {
+│
+╵
+╷
+│ Error: creating CloudWatch Logs Log Group (/ecs/dev-flask-app): operation error CloudWatch Logs: CreateLogGroup, https response error StatusCode: 400, RequestID: 068f8a33-023b-4951-99e9-a4b71c242319, api error AccessDeniedException: User: arn:aws:iam::321225686735:user/draiimon is not authorized to perform: logs:CreateLogGroup on resource: arn:aws:logs:ap-southeast-1:321225686735:log-group:/ecs/dev-flask-app:log-stream: because no identity-based policy allows the logs:CreateLogGroup action
+│
+│   with module.ecs.aws_cloudwatch_log_group.app["flask-app"],
+│   on modules/ecs/main.tf line 209, in resource "aws_cloudwatch_log_group" "app":
+│  209: resource "aws_cloudwatch_log_group" "app" {
+│
+╵
+╷
+│ Error: creating EC2 VPC: operation error EC2: CreateVpc, https response error StatusCode: 403, RequestID: 8e2d8b3b-b668-409d-99e1-6a191213d5e6, api error UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:iam::321225686735:user/draiimon is not authorized to perform: ec2:CreateVpc on resource: arn:aws:ec2:ap-southeast-1:321225686735:vpc/* because no identity-based policy allows the ec2:CreateVpc action. Encoded authorization failure message: z05eHDG5LJ5Sf_8k2HiW2hWSq9p5jTW4DS8jWA9FKlw0fPlhS32NXapxnD-Pzo_zIA6OETRyQYYYXDoqDRfZ6Vmce2BmUGnH5jy5fd3UnrCB0knHqm9Jh0pOccbI5lmZPogQkZ3RqTH6pIU1yLfqN7wk1iJDLY0a5csOqceTeIS9hhy5gzhUkB3A7GQ03dK2lM5O-vbKQL1ORKfJzG3NmwY8hZKPLcetzSAZ1anSRwq7PGr5Kw0TUFyBrx_S9KEr7evPypqq4WltDocR8UxW9B-DqYJKled3yCUhYQ1DRv2AsCs1wICcpZC_6anVX55AT79qRBay3XUDVv1HDXDF3HkOx8dL66JNfJpSEaBwII8NpJZlptyN5JG0ROcDBWtt9z12QcjDV-La-2S9fiyW5UO2rR8n9uVxoUKhrUPQMYN_jSKlssFK_4qeX6B9y0LJx2TNxndWYtwWd3Ldvb-85B_3-XEpSq185nkk6y8WdnWhb2bs85ppcgZk7M9EKshjir4Yy0SLJRE
+│
+│   with module.networking.aws_vpc.main,
+│   on modules/networking/main.tf line 4, in resource "aws_vpc" "main":
+│    4: resource "aws_vpc" "main" {
+│
+╵
+╷
+│ Error: creating EC2 EIP: operation error EC2: AllocateAddress, https response error StatusCode: 403, RequestID: 9e16e3c7-debb-455e-a13c-253e3a6c33ab, api error UnauthorizedOperation: You are not authorized to perform this operation. User: arn:aws:iam::321225686735:user/draiimon is not authorized to perform: ec2:AllocateAddress on resource: arn:aws:ec2:ap-southeast-1:321225686735:elastic-ip/* because no identity-based policy allows the ec2:AllocateAddress action. Encoded authorization failure message: kVt22bWuD86UicjMxJW50quLDfavQT1z4pnUyojcW9Ui-PgsMPqi5TpKIgVqWh2x13MFbGTtWvb4kCjlZVgt6KPJvFidRLXxpE0ARe8hfYRUb8X9F0xRh00HS8TaA-Dzdst5yHhOi8kwLk32veqmTnDNR_H3nmePKqRVhDyMvX5tn8m4tiInWBwgZsTKrCw4zsXCscKl59IZNfYT6Us9mOsWzPv9vNHHPRj_Nu5aPPAOqBstwRrDO-go29f5M-3_4y9qQdTXNYesO3tIpEaEZ-QiaXrggYbiiLzK_X68MM3LHpBGtLgt6oOWvXkd0jyaBtA5HfBFVMolQp4GL6WWkXxowtwfVd_WX8ScqhGbLETPBpwbMnsbJaNq4bvDW-PJAW-WxCEcgrXq9TLtJW5uBJaeFqjVfwDxWY3CTn5JHU_ZecUFCnR66qi90kb6ynQ0q7pTibYairdcAHeYouwSp_IJlzjB5edWgNUKLM4NGbTogzX2Tjm_HjR81VyhtqPGeAADHOT47XWEHQ
+│
+│   with module.networking.aws_eip.nat,
+│   on modules/networking/main.tf line 53, in resource "aws_eip" "nat":
+│   53: resource "aws_eip" "nat" {
+│
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$

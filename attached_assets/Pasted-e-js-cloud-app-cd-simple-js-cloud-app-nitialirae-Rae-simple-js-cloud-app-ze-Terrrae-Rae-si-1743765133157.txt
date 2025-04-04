@@ -1,0 +1,43 @@
+e-js-cloud-app$ cd ~/simple-js-cloud-app
+nitialirae@Rae:~/simple-js-cloud-app$
+ze Terrrae@Rae:~/simple-js-cloud-app$ # Initialize Terraform
+rraform rae@Rae:~/simple-js-cloud-app$ terraform init
+ Plan the deployment
+terraform -bash: /snap/bin/terraform: No such file or directory
+rae@Rae:~/simple-js-cloud-app$
+plan -ourae@Rae:~/simple-js-cloud-app$ # Plan the deployment
+rae@Rae:~/simple-js-cloud-app$ terraform plan -out=tfplan
+ply the -bash: /snap/bin/terraform: No such file or directory
+rae@Rae:~/simple-js-cloud-app$
+rae@Rae:~/simple-js-cloud-app$ # Apply the plan (only after checking it)
+terraforrae@Rae:~/simple-js-cloud-app$ terraform apply tfplan
+-bash: /snap/bin/terraform: No such file or directory
+rae@Rae:~/simple-js-cloud-app$ # Download Terraform binary directly
+rae@Rae:~/simple-js-cloud-app$ wget https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip
+-get install unzip
+unzip terraform_1.6.6_linux_amd64.zip
+sudo mv terraform /usr/local/bin/
+terraform --version--2025-04-04 19:11:27--  https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip
+Resolving releases.hashicorp.com (releases.hashicorp.com)... 108.158.213.124, 108.158.213.122, 108.158.213.118, ...
+Connecting to releases.hashicorp.com (releases.hashicorp.com)|108.158.213.124|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 24976120 (24M) [application/zip]
+Saving to: ‘terraform_1.6.6_linux_amd64.zip’
+
+
+added 69 packages, and audited 70 packages in 7s
+
+14 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilitieslocal/bin/
+rae@Rae:~/simple-js-cloud-app$ node server.js
+Server running on port 3000 Done
+docker build -t simple-js-app .ne
+docker run -p 3000:3000 simple-js-appdocker build -t simple-js-app .
+docker run -p 3000:3000 simple-js-appemove and 8 not upgraded.
+docker build -t simple-js-app .cd ~/simple-js-cloud-app
+docker run -p 3000:3000 simple-js-app
+norae@Rae:~/simple-js-cloud-app$ npm install
+de server.js
+

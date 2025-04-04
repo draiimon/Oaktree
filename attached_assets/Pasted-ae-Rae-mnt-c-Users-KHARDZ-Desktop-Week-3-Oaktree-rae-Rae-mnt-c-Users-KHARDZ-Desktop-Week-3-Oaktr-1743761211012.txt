@@ -1,0 +1,429 @@
+ae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ # Apply (create the resources)
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ terraform apply tfplan
+╷
+│ Error: Failed to load "tfplan" as a plan file
+│
+│ Error: stat tfplan: no such file or directory
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ cat modules/ecs/variables.tf
+cat: modules/ecs/variables.tf: No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ cat > modules/ecs/variables.tf << 'EOF'
+> variable "vpc_id" {
+ of the>   description = "The ID of the VPC"
+subnet_>   type        = string
+> }
+>
+> variable "public_subnet_ids" {
+>   description = "The IDs of the public subnets"
+
+variabl>   type        = list(string)
+> }
+>
+> variable "private_subnet_ids" {
+>   description = "The IDs of the private subnets"
+>   type        = list(string)
+ariable > }
+>
+> variable "app_names" {
+ription >   description = "Names of the applications to deploy"
+e       >   type        = list(string)
+riable "> }
+>
+> variable "app_ports" {
+>   description = "Ports that the applications listen on"
+>   type        = map(number)
+riable "> }
+>
+> variable "container_image" {
+ descrip>   description = "Docker image to use for containers"
+ type   >   type        = string
+> }
+>
+> variable "environment" {
+>   description = "The deployment environment"
+>   type        = string
+> }
+>
+> variable "ecr_repository_urls" {
+>   description = "URLs of the ECR repositories"
+type    >   type        = map(string)
+OF> }
+> EOF
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ cat modules/ecs/main.tf
+cat: modules/ecs/main.tf: No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ cat > modules/ecs/main.tf << 'EOF'
+e for F> // ECS module for Fargate Services
+>
+> // ECS Cluster
+> resource "aws_ecs_cluster" "main" {
+>   name = "${var.environment}-cluster"
+>
+>   setting {
+>     name  = "containerInsights"
+  value >     value = "enabled"
+}
+
+  >   }
+>
+>   tags = {
+nvironme>     Environment = var.environment
+>   }
+> }
+>
+> // Application Load Balancer (ALB)
+> resource "aws_lb" "main" {
+>   name               = "${var.environment}-alb"
+ interna>   internal           = false
+>   load_balancer_type = "application"
+ecurity_>   security_groups    = [aws_security_group.lb.id]
+ets     >   subnets            = var.public_subnet_ids
+>
+>   enable_deletion_protection = false
+>
+>   tags = {
+>     Name        = "${var.environment}-alb"
+nvironm>     Environment = var.environment
+>   }
+> }
+>
+> // ALB Target Groups
+e "aws_> resource "aws_lb_target_group" "app" {
+>   for_each = toset(var.app_names)
+
+  name >
+>   name        = "${var.environment}-${each.key}-tg"
+>   port        = var.app_ports[each.key]
+>   protocol    = "HTTP"
+>   vpc_id      = var.vpc_id
+>   target_type = "ip"
+>
+>   health_check {
+>     path                = "/"
+  protoc>     protocol            = "HTTP"
+ healthy>     healthy_threshold   = 3
+>     unhealthy_threshold = 3
+   timeo>     timeout             = 5
+>     interval            = 30
+    matc>     matcher             = "200-299"
+}
+
+  >   }
+tags = {>
+>   tags = {
+>     Name        = "${var.environment}-${each.key}-tg"
+vironmen>     Environment = var.environment
+
+}
+
+// >   }
+> }
+>
+> // ALB Listeners
+> resource "aws_lb_listener" "app" {
+>   for_each = toset(var.app_names)
+>
+>   load_balancer_arn = aws_lb.main.arn
+>   port              = var.app_ports[each.key]
+>   protocol          = "HTTP"
+>
+>   default_action {
+>     type             = "forward"
+>     target_group_arn = aws_lb_target_group.app[each.key].arn
+>   }
+>
+>   tags = {
+>     Name        = "${var.environment}-${each.key}-listener"
+  Envir>     Environment = var.environment
+>   }
+> }
+>
+> // Security group for ALB
+> resource "aws_security_group" "lb" {
+>   name        = "${var.environment}-lb-sg"
+>   description = "Security group for the load balancer"
+>   vpc_id      = var.vpc_id
+>
+>   dynamic "ingress" {
+>     for_each = var.app_ports
+  conten>     content {
+>       from_port   = ingress.value
+      to>       to_port     = ingress.value
+>       protocol    = "tcp"
+>       cidr_blocks = ["0.0.0.0/0"]
+>     }
+>   }
+>
+ess {
+ >   egress {
+>     from_port   = 0
+>     to_port     = 0
+>     protocol    = "-1"
+>     cidr_blocks = ["0.0.0.0/0"]
+>   }
+>
+>   tags = {
+>     Name        = "${var.environment}-lb-sg"
+>     Environment = var.environment
+>   }
+> }
+>
+> // ECS Task Execution Role
+> resource "aws_iam_role" "ecs_task_execution_role" {
+ name = >   name = "${var.environment}-ecs-task-execution-role"
+>
+>   assume_role_policy = jsonencode({
+>     Version = "2012-10-17"
+>     Statement = [
+>       {
+>         Action = "sts:AssumeRole"
+>         Effect = "Allow"
+>         Principal = {
+      S>           Service = "ecs-tasks.amazonaws.com"
+>         }
+>       }
+>     ]
+>   })
+>
+>   tags = {
+>     Name        = "${var.environment}-ecs-task-execution-role"
+>     Environment = var.environment
+
+}
+
+re>   }
+> }
+>
+> resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_policy" {
+>   role       = aws_iam_role.ecs_task_execution_role.name
+>   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+> }
+>
+> // Task Definitions
+esource > resource "aws_ecs_task_definition" "app" {
+>   for_each = toset(var.app_names)
+>
+>   family                   = "${var.environment}-${each.key}"
+>   network_mode             = "awsvpc"
+>   requires_compatibilities = ["FARGATE"]
+pu      >   cpu                      = "256"
+>   memory                   = "512"
+>   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
+ contain>
+>   container_definitions = jsonencode([
+>     {
+     nam>       name  = each.key
+>       image = var.ecr_repository_urls[each.key] != "" ? var.ecr_repository_urls[each.key] : var.container_image
+      po>       portMappings = [
+>         {
+>           containerPort = var.app_ports[each.key]
+>           hostPort      = var.app_ports[each.key]
+>           protocol      = "tcp"
+>         }
+>       ]
+>       essential = true
+     log>       logConfiguration = {
+>         logDriver = "awslogs"
+     opt>         options = {
+>           "awslogs-group"         = "/ecs/${var.environment}-${each.key}"
+>           "awslogs-region"        = "ap-southeast-1"
+>           "awslogs-stream-prefix" = "ecs"
+>         }
+      }>       }
+>     }
+>   ])
+>
+= {
+   >   tags = {
+      = >     Name        = "${var.environment}-${each.key}-task"
+  Envir>     Environment = var.environment
+>   }
+> }
+S Ser>
+> // ECS Services
+> resource "aws_ecs_service" "app" {
+>   for_each = toset(var.app_names)
+>
+>   name            = "${var.environment}-${each.key}-service"
+>   cluster         = aws_ecs_cluster.main.id
+>   task_definition = aws_ecs_task_definition.app[each.key].arn
+>   desired_count   = 1
+>   launch_type     = "FARGATE"
+>
+>   network_configuration {
+>     subnets          = var.private_subnet_ids
+>     security_groups  = [aws_security_group.ecs_task.id]
+>     assign_public_ip = false
+>   }
+>
+>   load_balancer {
+>     target_group_arn = aws_lb_target_group.app[each.key].arn
+>     container_name   = each.key
+>     container_port   = var.app_ports[each.key]
+>   }
+>
+>   depends_on = [
+>     aws_lb_listener.app,
+>     aws_iam_role_policy_attachment.ecs_task_execution_role_policy,
+>   ]
+>
+>   tags = {
+>     Name        = "${var.environment}-${each.key}-service"
+>     Environment = var.environment
+
+
+// Cl>   }
+> }
+>
+> // CloudWatch Log Groups
+> resource "aws_cloudwatch_log_group" "app" {
+>   for_each = toset(var.app_names)
+>
+>   name              = "/ecs/${var.environment}-${each.key}"
+>   retention_in_days = 30
+tags = {>
+>   tags = {
+>     Name        = "${var.environment}-${each.key}-logs"
+nvironm>     Environment = var.environment
+}
+}
+
+/>   }
+> }
+>
+> // Security Group for ECS Tasks
+> resource "aws_security_group" "ecs_task" {
+  name  >   name        = "${var.environment}-ecs-task-sg"
+>   description = "Security group for the ECS tasks"
+>   vpc_id      = var.vpc_id
+>
+>   dynamic "ingress" {
+>     for_each = var.app_ports
+>     content {
+>       from_port       = ingress.value
+>       to_port         = ingress.value
+  protoc>       protocol        = "tcp"
+>       security_groups = [aws_security_group.lb.id]
+>     }
+
+  egres>   }
+>
+>   egress {
+>     from_port   = 0
+>     to_port     = 0
+   proto>     protocol    = "-1"
+    cidr>     cidr_blocks = ["0.0.0.0/0"]
+>   }
+>
+>   tags = {
+>     Name        = "${var.environment}-ecs-task-sg"
+>     Environment = var.environment
+>   }
+> }
+> EOF
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ cat > modules/ecs/outputs.tf << 'EOF'
+> output "load_balancer_dns" {
+>   description = "The DNS name of the load balancer"
+>   value       = aws_lb.main.dns_name
+> }
+t "ecs_>
+> output "ecs_cluster_id" {
+>   description = "The ID of the ECS cluster"
+>   value       = aws_ecs_cluster.main.id
+> }
+>
+> output "service_names" {
+iption =>   description = "The names of the ECS services"
+>   value       = { for name in var.app_names : name => aws_ecs_service.app[name].name }
+> }
+> EOF
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ # Check if ECR module files exist
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ ls -la modules/ecr/
+total 4
+drwxrwxrwx 1 rae rae 4096 Apr  4 18:01 .
+drwxrwxrwx 1 rae rae 4096 Apr  4 18:01 ..
+-rwxrwxrwx 1 rae rae  810 Apr  4 18:01 main.tf
+-rwxrwxrwx 1 rae rae  187 Apr  4 18:01 outputs.tf
+-rwxrwxrwx 1 rae rae  215 Apr  4 18:01 variables.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ # Create ECR main.tf if it doesn't exist
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ cat > modules/ecr/main.tf << 'EOF'
+> // ECR module for container repositories
+>
+> resource "aws_ecr_repository" "app" {
+>   for_each = toset(var.repository_names)
+>
+>   name = "${var.environment}-${each.key}"
+>
+>   image_scanning_configuration {
+>     scan_on_push = true
+>   }
+>
+>   tags = {
+>     Name        = "${var.environment}-${each.key}"
+>     Environment = var.environment
+>   }
+> }
+>
+> resource "aws_ecr_lifecycle_policy" "app" {
+r_each >   for_each = toset(var.repository_names)
+>
+>   repository = aws_ecr_repository.app[each.key].name
+>
+>   policy = jsonencode({
+    rule>     rules = [
+>       {
+>         rulePriority = 1
+>         description  = "Keep last 5 images"
+        >         selection = {
+>           tagStatus     = "any"
+    coun>           countType     = "imageCountMoreThan"
+>           countNumber   = 5
+>         }
+>         action = {
+     typ>           type = "expire"
+       }>         }
+}
+    ]>       }
+>     ]
+>   })
+> }
+> EOF
+reate ECR variables.tf if it doesn't exist
+cat > modules/ecr/variables.tf << 'EOF'
+variable "repository_names" {
+  rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ # Create ECR variables.tf if it doesn't exist
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ cat > modules/ecr/variables.tf << 'EOF'
+> variable "repository_names" {
+>   description = "Names of the ECR repositories to create"
+>   type        = list(string)
+> }
+
+variabl>
+> variable "environment" {
+>   description = "The deployment environment"
+>   type        = string
+> }
+> EOF
+ Create ECR outputs.tf if it doesn't exist
+cat > modules/ecr/outpurae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$
+ts.tf <rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ # Create ECR outputs.tf if it doesn't exist
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ cat > modules/ecr/outputs.tf << 'EOF'
+ut "rep> output "repository_urls" {
+>   description = "The URLs of the ECR repositories"
+ value  >   value       = { for name in var.repository_names : name => aws_ecr_repository.app[name].repository_url }
+F> }
+> EOF
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ terraform init
+erraform plan -var="container_image=nginx:latest" -out=tfplanInitializing the backend...
+
+
+
+
+
+
+
+
+
+
+
