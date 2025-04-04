@@ -1,0 +1,238 @@
+
+
+Console Home Info
+Reset to default layout
+Add widgets
+
+Recently visited Info
+
+IAM
+IAM
+VPC
+VPC
+Elastic Container Registry
+Elastic Container Registry
+Elastic Container Service
+Elastic Container Service
+IAM
+View all services
+Drag handle for Recently visitedUse Space or Enter to activate drag, arrow keys to move, Space or Enter to submit, or Escape to discard. Be sure to temporarily disable any screen reader navigation feature that may interfere with the functionality of the arrow keys.Resize handle for Recently visitedUse Space or Enter to activate resize, arrow keys to move, Space or Enter to submit, or Escape to discard.
+
+Applications (0) Info
+Create application
+Region: US East (N. Virginia)
+
+
+Select Region
+
+us-east-1 (Current Region)
+
+1
+
+Name
+	
+Description
+	
+Region
+	
+Originating account
+	
+
+Access denied to servicecatalog:ListApplications
+Diagnose with Amazon QDiagnose with Amazon Q
+Go to myApplications
+Drag handle for ApplicationsUse Space or Enter to activate drag, arrow keys to move, Space or Enter to submit, or Escape to discard. Be sure to temporarily disable any screen reader navigation feature that may interfere with the functionality of the arrow keys.Resize handle for ApplicationsUse Space or Enter to activate resize, arrow keys to move, Space or Enter to submit, or Escape to discard.
+
+Welcome to AWS 
+
+Getting started with AWS 
+Learn the fundamentals and find valuable information to get the most out of AWS.
+Training and certification 
+Learn from AWS experts and advance your skills and knowledge.
+What's new with AWS? 
+Discover new AWS services, features, and Regions.
+Learn the fundamentals and find valuable information to get the most out of AWS.
+Learn from AWS experts and advance your skills and knowledge.
+Discover new AWS services, features, and Regions.
+Drag handle for Welcome to AWSUse Space or Enter to activate drag, arrow keys to move, Space or Enter to submit, or Escape to discard. Be sure to temporarily disable any screen reader navigation feature that may interfere with the functionality of the arrow keys.Resize handle for Welcome to AWSUse Space or Enter to activate resize, arrow keys to move, Space or Enter to submit, or Escape to discard.
+
+AWS Health Info
+
+No health data
+You don't have permissions to access AWS Health.
+Go to AWS Health
+Drag handle for AWS HealthUse Space or Enter to activate drag, arrow keys to move, Space or Enter to submit, or Escape to discard. Be sure to temporarily disable any screen reader navigation feature that may interfere with the functionality of the arrow keys.Resize handle for AWS HealthUse Space or Enter to activate resize, arrow keys to move, Space or Enter to submit, or Escape to discard.
+
+Cost and usage Info
+
+Current month costs
+Access denied
+Forecasted month end costs
+Access denied
+Savings opportunities
+Access denied
+Cost breakdown
+Access denied
+Go to Billing and Cost Management
+Drag handle for Cost and usageUse Space or Enter to activate drag, arrow keys to move, Space or Enter to submit, or Escape to discard. Be sure to temporarily disable any screen reader navigation feature that may interfere with the functionality of the arrow keys.Resize handle for Cost and usageUse Space or Enter to activate resize, arrow keys to move, Space or Enter to submit, or Escape to discard.
+
+Solutions (16) Info
+Vetted Solutions from AWS for popular business and technical use cases.
+
+
+
+
+Artificial Intelligence (4)
+
+Security (4)
+
+Infrastructure (4)
+
+Databases (4)
+
+Launch generative AI applications with minimal coding 
+Time to complete: 10 mins
+Detect and remediate coding errors 
+Time to complete: 15 mins
+Deploy conversational AI-powered business applications 
+Time to complete: 35 mins
+Build machine learning models from development to production 
+Time to complete: 3 mins
+Go to AWS Solutions Library 
+Drag handle for SolutionsUse Space or Enter to activate drag, arrow keys to move, Space or Enter to submit, or Escape to discard. Be sure to temporarily disable any screen reader navigation feature that may interfere with the functionality of the arrow keys.Resize handle for SolutionsUse Space or Enter to activate resize, arrow keys to move, Space or Enter to submit, or Escape to discard.
+
+Explore AWS Info
+
+Learn AI 
+Explore training for coding experts seeking to integrate the latest AI innovations into their workflows and toolbox
+Deploy LLMs with confidence 
+Transform your business with the right LLM and price-performant, purpose-built infrastructure
+Business Support Limited Time Offer 
+Expert technical assistance when you need it most
+The road map to transform financial services with gen AI 
+Discover three strategic benefits >
+Explore training for coding experts seeking to integrate the latest AI innovations into their workflows and toolbox
+Transform your business with the right LLM and price-performant, purpose-built infrastructure
+Expert technical assistance when you need it most
+Discover three strategic benefits >
+Drag handle for Explore AWSUse Space or Enter to activate drag, arrow keys to move, Space or Enter to submit, or Escape to discard. Be sure to temporarily disable any screen reader navigation feature that may interfere with the functionality of the arrow keys.Resize handle for Explore AWSUse Space or Enter to activate resize, arrow keys to move, Space or Enter to submit, or Escape to discard.
+
+Security Info
+Region: US East (N. Virginia)
+
+
+Access denied to securityhub:DescribeHub
+Diagnose with Amazon QDiagnose with Amazon Q
+Go to Security Hub
+Drag handle for SecurityUse Space or Enter to activate drag, arrow keys to move, Space or Enter to submit, or Escape to discard. Be sure to temporarily disable any screen reader navigation feature that may interfere with the functionality of the arrow keys.Resize handle for SecurityUse Space or Enter to activate resize, arrow keys to move, Space or Enter to submit, or Escape to discard.
+
+Trusted Advisor Info
+
+No recommendations
+You don't have permissions to access Trusted Advisor.
+
+Go to Trusted Advisor
+Drag handle for Trusted AdvisorUse Space or Enter to activate drag, arrow keys to move, Space or Enter to submit, or Escape to discard. Be sure to temporarily disable any screen reader navigation feature that may interfere with the functionality of the arrow keys.Resize handle for Trusted AdvisorUse Space or Enter to activate resize, arrow keys to move, Space or Enter to submit, or Escape to discard.
+
+Latest announcements Info
+
+APR
+4
+AWS ParallelCluster 3.13 with support for Ubuntu 24.04 and support for EFA-enabled with Amazon FSx for Lustre 
+APR
+4
+Amazon Security Lake now supports Internet Protocol Version 6 (IPv6) 
+APR
+4
+Amazon Neptune announces 99.99% availability Service Level Agreement 
+APR
+4
+APR
+4
+APR
+4
+APR
+4
+APR
+4
+APR
+4
+APR
+1
+APR
+4
+APR
+4
+APR
+4
+APR
+4
+APR
+4
+APR
+4
+APR
+3
+APR
+3
+APR
+3
+APR
+3
+APR
+3
+APR
+3
+APR
+3
+View all announcements 
+Drag handle for Latest announcementsUse Space or Enter to activate drag, arrow keys to move, Space or Enter to submit, or Escape to discard. Be sure to temporarily disable any screen reader navigation feature that may interfere with the functionality of the arrow keys.Resize handle for Latest announcementsUse Space or Enter to activate resize, arrow keys to move, Space or Enter to submit, or Escape to discard.
+
+Recent AWS blog posts Info
+
+APR
+4
+Nomalab automates ad break detection in media workflows with AWS 
+APR
+4
+Evaluate models or RAG systems using Amazon Bedrock Evaluations – Now generally available 
+APR
+4
+Fine-tune large language models with reinforcement learning from human or AI feedback 
+APR
+4
+APR
+4
+APR
+4
+APR
+4
+APR
+4
+APR
+4
+APR
+4
+APR
+4
+APR
+4
+APR
+4
+APR
+3
+APR
+3
+APR
+3
+APR
+3
+APR
+3
+APR
+3
+APR
+3
+APR
+3
+View all blog posts 

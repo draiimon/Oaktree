@@ -54,7 +54,7 @@ The application follows a simple yet powerful architecture:
    npm start
    ```
 
-4. View the application at: http://localhost:5000
+4. View the application at: http://localhost:3000
 
 ## AWS Deployment
 

@@ -13,10 +13,14 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Cloud Dashboard"
+args = "Node.js Server"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Network Diagram Server"
 
 [[workflows.workflow]]
-name = "Cloud Dashboard"
+name = "Node.js Server"
 author = "agent"
 
 [workflows.workflow.metadata]
@@ -28,6 +32,21 @@ task = "packager.installForAll"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd app && node server.js"
+waitForPort = 3000
+
+[[workflows.workflow]]
+name = "Network Diagram Server"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd app && node diagram-server.js"
 waitForPort = 5000
 
 [deployment]

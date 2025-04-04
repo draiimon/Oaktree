@@ -1,0 +1,146 @@
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ touch main.tf variables.tf outputs.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ cd terraform
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ touch main.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$  variables.tf
+variables.tf: command not found
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform validate
+Success! The configuration is valid.
+
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Create project structure for screenshot
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ mkdir -p app terraform/modules/{networking,ecr,ecs}
+app/server.js app/package.json
+touch terraform/main.tf terraform/variables.tf terraform/outputs.tf
+touch terraform/modules/networking/{main.tf,variables.tf,outputs.tf}
+touch terraform/modules/ecr/{main.tf,variables.tf,outputs.tf}
+touch terraform/modules/ecs/{main.tf,variables.tf,outputs.tf}
+touch Dockerfilerae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ touch app/server.js app/package.json
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ touch terraform/main.tf terraform/variables.tf terraform/outputs.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ touch terraform/modules/networking/{main.tf,variables.tf,outputs.tf}
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ touch terraform/modules/ecr/{main.tf,variables.tf,outputs.tf}
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ touch terraform/modules/ecs/{main.tf,variables.tf,outputs.tf}
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ touch Dockerfile
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ cat > terraform/providers.tf << EOF
+er "aws" {
+  region = var.aws_region
+
+  default_tags {
+    tags = {
+      Project     = "Week3-Cloud-Infra> provider "aws" {
+y   = ">   region = var.aws_region
+>
+>   default_tags {
+>     tags = {
+>       Project     = "Week3-Cloud-Infrastructure"
+>       Environment = var.environment
+>       ManagedBy   = "Terraform"
+>     }
+>   }
+> }
+> EOF
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ cat > terraform/variables.tf << EOF
+> variable "aws_region" {
+>   description = "AWS region to deploy resources"
+>   type        = string
+>   default     = "us-east-1"
+> }
+>
+> variable "environment" {
+>   description = "Environment name (dev, staging, prod)"
+>   type        = string
+>   default     = "dev"
+> }
+>
+e "vpc_> variable "vpc_cidr" {
+cription>   description = "CIDR block for VPC"
+>   type        = string
+>   default     = "10.0.0.0/16"
+}
+
+vari> }
+>
+> variable "public_subnets" {
+>   description = "List of public subnet CIDR blocks"
+>   type        = list(string)
+default >   default     = ["10.0.1.0/24", "10.0.2.0/24"]
+> }
+iable ">
+> variable "private_subnets" {
+>   description = "List of private subnet CIDR blocks"
+>   type        = list(string)
+>   default     = ["10.0.101.0/24", "10.0.102.0/24"]
+}
+EOF> }
+> EOF
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ cat > terraform/modules/networking/main.tf << EOF
+> resource "aws_vpc" "main" {
+>   cidr_block           = var.vpc_cidr
+>   enable_dns_support   = true
+>   enable_dns_hostnames = true
+>
+>   tags = {
+me      >     Name        = "\${var.environment}-vpc"
+>     Environment = var.environment
+}
+}
+
+r>   }
+> }
+>
+> resource "aws_subnet" "public" {
+count   >   count                   = length(var.public_subnets)
+>   vpc_id                  = aws_vpc.main.id
+cidr_bl>   cidr_block              = var.public_subnets[count.index]
+>   availability_zone       = var.availability_zones[count.index]
+map_public_ip_on_launch = true
+
+  >   map_public_ip_on_launch = true
+>
+>   tags = {
+${var.environm>     Name        = "\${var.environment}-public-subnet-\${count.index + 1}"
+>     Environment = var.environment
+>   }
+> }
+>
+> resource "aws_internet_gateway" "main" {
+>   vpc_id = aws_vpc.main.id
+>
+>   tags = {
+>     Name        = "\${var.environment}-igw"
+    Env>     Environment = var.environment
+>   }
+}
+EOF> }
+> EOF
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Para makita ang project structure
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ mkdir -p Week3_Project
+cd Week3_Project
+mkdir -p app terraform/modules/{networking,ecr,ecs}
+touch app/server.js app/package.json
+touch terraform/main.tf terraform/variablrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ cd Week3_Project
+rraform/outputs.tf
+touch terraform/modules/networking/{main.tf,variables.tf,outputs.tf}
+touch terraform/modules/ecr/{main.tf,variables.tf,outputs.tf}
+touch terraform/modules/ecs/{main.tf,variablerae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform/Week3_Project$ mkdir -p app terraform/modules/{networking,ecr,ecs}
+puts.tf}
+touch Dockerfile
+
+# Para ma-display ang structure
+ls -la
+find . -type f | sortrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform/Week3_Project$ touch app/server.js app/package.json
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform/Week3_Project$ touch terraform/main.tf terraform/variables.tf terraform/outputs.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform/Week3_Project$ touch terraform/modules/networking/{main.tf,variables.tf,outputs.tf}
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform/Week3_Project$ touch terraform/modules/ecr/{main.tf,variables.tf,outputs.tf}
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform/Week3_Project$ touch terraform/modules/ecs/{main.tf,variables.tf,outputs.tf}
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform/Week3_Project$ touch Dockerfile
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform/Week3_Project$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform/Week3_Project$ # Para ma-display ang structure
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform/Week3_Project$ ls -la
+total 0
+drwxrwxrwx 1 rae rae 4096 Apr  5  2025 .
+drwxrwxrwx 1 rae rae 4096 Apr  5  2025 ..
+-rwxrwxrwx 1 rae rae    0 Apr  5  2025 Dockerfile
+drwxrwxrwx 1 rae rae 4096 Apr  5  2025 app
+drwxrwxrwx 1 rae rae 4096 Apr  5  2025 terraform
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform/Week3_Project$ find . -type f | sort
+
+

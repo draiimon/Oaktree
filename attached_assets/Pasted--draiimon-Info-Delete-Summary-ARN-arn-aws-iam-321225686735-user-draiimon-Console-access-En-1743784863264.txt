@@ -1,0 +1,109 @@
+
+draiimon Info
+Delete
+Summary
+ARN
+
+arn:aws:iam::321225686735:user/draiimon
+Console access
+Enabled without MFA
+Access key 1
+AKIAUVSUK73H3ZAMDCH6 - Active
+Used today. 14 hours old.
+Created
+March 20, 2025, 09:10 (UTC+08:00)
+Last console sign-in
+2 hours ago
+Access key 2
+Create access key
+
+Permissions
+
+Groups
+
+Tags
+(1)
+
+Security credentials
+
+Last Accessed
+Console sign-in
+Manage console access
+Console sign-in link
+
+https://321225686735.signin.aws.amazon.com/console
+Console password
+Updated 2 hours ago (2025-04-04 21:58 GMT+8)
+Last console sign-in
+2 hours ago (2025-04-04 21:58 GMT+8)
+Multi-factor authentication (MFA) (0)
+Remove
+Resync
+Assign MFA device
+Use MFA to increase the security of your AWS environment. Signing in with MFA requires an authentication code from an MFA device. Each user can have a maximum of 8 MFA devices assigned. Learn more 
+
+Type
+Identifier
+Certifications
+Created on
+No MFA devices. Assign an MFA device to improve the security of your AWS environment
+Assign MFA device
+Access keys (1)
+Create access key
+Use access keys to send programmatic calls to AWS from the AWS CLI, AWS Tools for PowerShell, AWS SDKs, or direct AWS API calls. You can have a maximum of two access keys (active or inactive) at a time. Learn more 
+
+AKIAUVSUK73H3ZAMDCH6
+Actions
+Description
+Create access key
+Status
+Active
+Last used
+6 minutes ago
+Created
+14 hours ago
+Last used region
+us-east-1
+Last used service
+sts
+SSH public keys for AWS CodeCommit (0)
+Actions
+Upload SSH public key
+User SSH public keys to authenticate access to AWS CodeCommit repositories. You can have a maximum of five SSH public keys (active or inactive) at a time. Learn more 
+
+SSH Key ID
+Uploaded
+Status
+No SSH public keys
+Upload SSH public key
+HTTPS Git credentials for AWS CodeCommit (0)
+Actions
+Generate credentials
+Generate a user name and password you can use to authenticate HTTPS connections to AWS CodeCommit repositories. You can have a maximum of 2 sets of credentials (active or inactive) at a time. Learn more 
+
+User name
+Created
+Status
+No credentials
+Generate credentials
+Credentials for Amazon Keyspaces (for Apache Cassandra) (0)
+Actions
+Generate credentials
+Generate a user name and password you can use to authenticate to Amazon Keyspaces. You can have a maximum of two sets of credentials (active or inactive) at a time. Learn more 
+
+User name
+Created
+Status
+No credentials
+Generate credentials
+X.509 Signing certificates (0)
+Actions
+Upload
+Create X.509 certificate
+Use X.509 certificates to make secure SOAP-protocol requests to some AWS services. You can have a maximum of two X.509 certificates (active or inactive) at a time. Learn more 
+
+Creation time
+Thumbprint
+Status
+No X.509 certificates
+Create X.509 certificate

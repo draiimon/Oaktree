@@ -1,0 +1,107 @@
+    + (known after apply),
+    ]
+  + vpc_id              = (known after apply)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.networking.aws_vpc.main: Creating...
+module.ecs.aws_cloudwatch_log_group.app: Creating...
+module.networking.aws_eip.nat: Creating...
+module.ecs.aws_iam_role.ecs_execution: Creating...
+module.ecr.aws_ecr_repository.main: Creating...
+module.ecs.aws_iam_role.ecs_task: Creating...
+module.ecs.aws_ecs_cluster.main: Creating...
+module.ecr.aws_ecr_repository.main: Creation complete after 2s [id=cloud-app-dashboard]
+module.ecr.aws_ecr_lifecycle_policy.main: Creating...
+module.ecs.aws_cloudwatch_log_group.app: Creation complete after 2s [id=/ecs/dev-app]
+module.ecs.aws_iam_role.ecs_task: Creation complete after 3s [id=dev-ecs-task-role]
+module.ecs.aws_iam_role.ecs_execution: Creation complete after 3s [id=dev-ecs-execution-role]
+module.ecr.aws_ecr_lifecycle_policy.main: Creation complete after 1s [id=cloud-app-dashboard]
+module.ecs.aws_iam_role_policy_attachment.ecs_execution: Creating...
+module.ecs.aws_ecs_task_definition.app: Creating...
+module.ecs.aws_iam_role_policy_attachment.ecs_execution: Creation complete after 0s [id=dev-ecs-execution-role-20250404164720963000000001]
+module.ecs.aws_ecs_task_definition.app: Creation complete after 0s [id=dev-app]
+module.networking.aws_eip.nat: Creation complete after 4s [id=eipalloc-0065a0449dfdda37a]
+module.networking.aws_vpc.main: Still creating... [10s elapsed]
+module.ecs.aws_ecs_cluster.main: Still creating... [10s elapsed]
+module.ecs.aws_ecs_cluster.main: Creation complete after 13s [id=arn:aws:ecs:us-east-1:321225686735:cluster/dev-cluster]
+module.networking.aws_vpc.main: Creation complete after 16s [id=vpc-0ed30a817d128925a]
+module.networking.aws_subnet.public[1]: Creating...
+module.networking.aws_internet_gateway.igw: Creating...
+module.networking.aws_subnet.private[0]: Creating...
+module.networking.aws_subnet.public[0]: Creating...
+module.networking.aws_subnet.private[1]: Creating...
+module.ecs.aws_security_group.alb: Creating...
+module.ecs.aws_lb_target_group.app: Creating...
+module.networking.aws_subnet.private[0]: Creation complete after 2s [id=subnet-03ed24fbd400780d2]
+module.networking.aws_subnet.private[1]: Creation complete after 2s [id=subnet-00abadc7d5e7012bf]
+module.networking.aws_internet_gateway.igw: Creation complete after 2s [id=igw-0f5cd8b719f99f9ec]
+module.networking.aws_route_table.public: Creating...
+module.ecs.aws_lb_target_group.app: Creation complete after 4s [id=arn:aws:elasticloadbalancing:us-east-1:321225686735:targetgroup/dev-target-group/92585add253d9ca8]
+module.networking.aws_route_table.public: Creation complete after 3s [id=rtb-087c09ca778e0dde2]
+module.ecs.aws_security_group.alb: Creation complete after 5s [id=sg-0d31ff77c7db4b054]
+module.ecs.aws_security_group.ecs_tasks: Creating...
+module.networking.aws_subnet.public[1]: Still creating... [10s elapsed]
+module.networking.aws_subnet.public[0]: Still creating... [10s elapsed]
+module.ecs.aws_security_group.ecs_tasks: Creation complete after 5s [id=sg-09b9f0fba7b8e8656]
+module.networking.aws_subnet.public[1]: Creation complete after 12s [id=subnet-025c85e4d6e79a8a3]
+module.networking.aws_subnet.public[0]: Creation complete after 12s [id=subnet-01df9cd3ec465d088]
+module.networking.aws_route_table_association.public[0]: Creating...
+module.networking.aws_route_table_association.public[1]: Creating...
+module.networking.aws_nat_gateway.nat: Creating...
+module.ecs.aws_lb.main: Creating...
+module.networking.aws_route_table_association.public[0]: Creation complete after 2s [id=rtbassoc-003142420e32b8036]
+module.networking.aws_route_table_association.public[1]: Creation complete after 2s [id=rtbassoc-04e34af2888e56a89]
+module.networking.aws_nat_gateway.nat: Still creating... [11s elapsed]
+module.ecs.aws_lb.main: Still creating... [11s elapsed]
+module.networking.aws_nat_gateway.nat: Still creating... [21s elapsed]
+module.ecs.aws_lb.main: Still creating... [21s elapsed]
+module.networking.aws_nat_gateway.nat: Still creating... [31s elapsed]
+module.ecs.aws_lb.main: Still creating... [31s elapsed]
+module.networking.aws_nat_gateway.nat: Still creating... [42s elapsed]
+module.ecs.aws_lb.main: Still creating... [42s elapsed]
+module.networking.aws_nat_gateway.nat: Still creating... [52s elapsed]
+module.ecs.aws_lb.main: Still creating... [52s elapsed]
+module.networking.aws_nat_gateway.nat: Still creating... [1m2s elapsed]
+module.ecs.aws_lb.main: Still creating... [1m2s elapsed]
+module.networking.aws_nat_gateway.nat: Still creating... [1m13s elapsed]
+module.ecs.aws_lb.main: Still creating... [1m13s elapsed]
+module.networking.aws_nat_gateway.nat: Still creating... [1m23s elapsed]
+module.ecs.aws_lb.main: Still creating... [1m23s elapsed]
+module.networking.aws_nat_gateway.nat: Still creating... [1m33s elapsed]
+module.ecs.aws_lb.main: Still creating... [1m33s elapsed]
+module.networking.aws_nat_gateway.nat: Creation complete after 1m41s [id=nat-0d4b52d0c293c5167]
+module.networking.aws_route_table.private: Creating...
+module.networking.aws_route_table.private: Creation complete after 3s [id=rtb-0b24a4fac170b4e21]
+module.networking.aws_route_table_association.private[0]: Creating...
+module.networking.aws_route_table_association.private[1]: Creating...
+module.ecs.aws_lb.main: Still creating... [1m44s elapsed]
+module.networking.aws_route_table_association.private[0]: Creation complete after 1s [id=rtbassoc-01cddc7b90ed42aa0]
+module.networking.aws_route_table_association.private[1]: Creation complete after 2s [id=rtbassoc-0a6b5665978509ca1]
+module.ecs.aws_lb.main: Still creating... [1m54s elapsed]
+module.ecs.aws_lb.main: Still creating... [2m4s elapsed]
+module.ecs.aws_lb.main: Still creating... [2m15s elapsed]
+module.ecs.aws_lb.main: Still creating... [2m25s elapsed]
+module.ecs.aws_lb.main: Still creating... [2m35s elapsed]
+module.ecs.aws_lb.main: Still creating... [2m45s elapsed]
+module.ecs.aws_lb.main: Still creating... [2m56s elapsed]
+module.ecs.aws_lb.main: Creation complete after 3m3s [id=arn:aws:elasticloadbalancing:us-east-1:321225686735:loadbalancer/app/dev-alb/9b3f234690e8fb88]
+module.ecs.aws_lb_listener.http: Creating...
+module.ecs.aws_lb_listener.http: Creation complete after 2s [id=arn:aws:elasticloadbalancing:us-east-1:321225686735:listener/app/dev-alb/9b3f234690e8fb88/8a10a4da48db78cd]
+module.ecs.aws_ecs_service.app: Creating...
+module.ecs.aws_ecs_service.app: Creation complete after 3s [id=arn:aws:ecs:us-east-1:321225686735:service/dev-cluster/cloud-app-dashboard-service]
+module.ecs.aws_appautoscaling_target.ecs_target: Creating...
+╷
+│ Error: listing tags for Application Auto Scaling Target (arn:aws:application-autoscaling:us-east-1:321225686735:scalable-target/0ec553b55a4daf0a4179ba174156a4c0f495): operation error Application Auto Scaling: ListTagsForResource, https response error StatusCode: 400, RequestID: 5846be41-300e-43aa-a91d-02a23deac44a, api error AccessDeniedException: User: arn:aws:iam::321225686735:user/draiimon is not authorized to perform: application-autoscaling:ListTagsForResource on resource: arn:aws:application-autoscaling:us-east-1:321225686735:scalable-target/0ec553b55a4daf0a4179ba174156a4c0f495 because no identity-based policy allows the application-autoscaling:ListTagsForResource action
+│
+│   with module.ecs.aws_appautoscaling_target.ecs_target,
+│   on modules/ecs/main.tf line 283, in resource "aws_appautoscaling_target" "ecs_target":
+│  283: resource "aws_appautoscaling_target" "ecs_target" {
+│
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/Terraform$
+
