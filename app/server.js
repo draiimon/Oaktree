@@ -89,14 +89,7 @@ app.get('/', (req, res) => {
               </div>
             </div>
           </div>
-          <div class="p-4 bg-gray-50 border-t">
-            <p class="text-center text-gray-600 text-sm">
-              &copy; 2023 Oaktree Innovation | Real Cloud Application | Deployment Date: ${new Date().toLocaleDateString()}
-            </p>
-            <p class="text-center text-gray-500 text-xs mt-1">
-              This is a real application deployed using Terraform and AWS ECS
-            </p>
-          </div>
+
         </div>
       </div>
     </body>
