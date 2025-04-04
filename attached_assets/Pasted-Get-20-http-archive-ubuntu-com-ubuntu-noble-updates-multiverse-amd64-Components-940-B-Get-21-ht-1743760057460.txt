@@ -1,0 +1,70 @@
+Get:20 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:21 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [7076 B]
+Get:22 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [15.7 kB]
+Get:23 http://archive.ubuntu.com/ubuntu noble-backports/restricted amd64 Components [212 B]
+Get:24 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Components [212 B]
+Fetched 3066 kB in 7s (430 kB/s)
+Reading package lists... Done
+W: http://pkg.jenkins.io/debian/binary/Release.gpg: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3$ aws configure
+AWS Access Key ID [****************DCH6]:
+AWS Secret Access Key [****************c1FA]:
+Default region name [ap-southeast-1]:
+Default output format [json]:
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3$ terraform init
+erraform plan
+terraform apply
+Terraform initialized in an empty directory!
+
+The directory has no Terraform configuration files. You may begin working
+with Terraform immediately by creating Terraform configuration files.
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3$ terraform plan
+╷
+│ Error: No configuration files
+│
+│ Plan requires configuration to be present. Planning without a configuration would mark everything for destruction,
+│ which is normally not what is desired. If you would like to destroy everything, run plan with the -destroy option.
+│ Otherwise, create a Terraform configuration file (.tf file) and try again.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3$ terraform apply
+╷
+│ Error: No configuration files
+│
+│ Apply requires configuration to be present. Applying without a configuration would mark everything for
+│ destruction, which is normally not what is desired. If you would like to destroy everything, run 'terraform
+│ destroy' instead.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3$ cd Oaktree
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ terraform init
+erraform plan
+terraform applyTerraform initialized in an empty directory!
+
+The directory has no Terraform configuration files. You may begin working
+with Terraform immediately by creating Terraform configuration files.
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ terraform plan
+
+╷
+│ Error: No configuration files
+│
+│ Plan requires configuration to be present. Planning without a configuration would mark everything for destruction,
+│ which is normally not what is desired. If you would like to destroy everything, run plan with the -destroy option.
+│ Otherwise, create a Terraform configuration file (.tf file) and try again.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ terraform apply
+╷
+│ Error: No configuration files
+│
+│ Apply requires configuration to be present. Applying without a configuration would mark everything for
+│ destruction, which is normally not what is desired. If you would like to destroy everything, run 'terraform
+│ destroy' instead.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ mkdir -p ~/terraform-project
+ ~/terraform-projectrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ cd ~/terraform-project
+rae@Rae:~/terraform-project$
+
+
+
+
+
+
+
