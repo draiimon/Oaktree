@@ -1,4 +1,4 @@
-# Week 3: Cloud Services & Infrastructure as Code - Day 15 (March 14, 2023)
+# Week 3: Cloud Services & Infrastructure as Code - Day 15 (March 27, 2023)
 
 ## Introduction
 
@@ -58,7 +58,7 @@ For documentation and reference purposes, I've captured screenshots of key confi
 5. Security Group Rules
 6. CloudWatch Logs Setup
 
-## Tomorrow's Plan (March 15)
+## Tomorrow's Plan (March 28, 2023)
 
 1. Complete the infrastructure deployment with Terraform apply
 2. Build and push the container image to ECR

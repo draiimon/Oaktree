@@ -1,4 +1,4 @@
-# Week 3: Cloud Services & Infrastructure as Code - Day 12 (March 11, 2023)
+# Week 3: Cloud Services & Infrastructure as Code - Day 12 (March 24, 2023)
 
 ## Introduction
 
@@ -122,7 +122,7 @@ For documentation and reference purposes, I've captured screenshots of key confi
 4. AWS Free Tier Dashboard
 5. ECS Service Overview
 
-## Tomorrow's Plan (March 12)
+## Tomorrow's Plan (March 25, 2023)
 
 1. Install and configure Terraform for infrastructure management
 2. Study Infrastructure as Code principles and best practices
