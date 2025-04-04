@@ -1,0 +1,342 @@
+Microsoft Windows [Version 10.0.19045.4529]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\KHARDZ>cmd desktop
+Microsoft Windows [Version 10.0.19045.4529]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\KHARDZ>cd desktop
+
+C:\Users\KHARDZ\Desktop>wsl
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop$ git clone -b Week-3 https://github.com/draiimon/Oaktree.git
+fatal: destination path 'Oaktree' already exists and is not an empty directory.
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop$ cd Oaktree
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Oaktree$ cd desktop
+-bash: cd: desktop: No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Oaktree$ cd Destop
+-bash: cd: Destop: No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Oaktree$ cd..
+cd..: command not found
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Oaktree$ cd ..
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop$ cd Week 3
+-bash: cd: too many arguments
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop$ cd "Week 3"
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3$ git clone -b Week-3 https://github.com/draiimon/Oaktree.git
+Cloning into 'Oaktree'...
+remote: Enumerating objects: 2054, done.
+remote: Counting objects: 100% (833/833), done.
+remote: Compressing objects: 100% (606/606), done.
+remote: Total 2054 (delta 175), reused 810 (delta 159), pack-reused 1221 (from 1)
+Receiving objects: 100% (2054/2054), 4.35 MiB | 4.81 MiB/s, done.
+Resolving deltas: 100% (346/346), done.
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3$ cd Oaktree
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ aws configure
+AWS Access Key ID [****************DCH6]:
+AWS Secret Access Key [****************c1FA]:
+Default region name [ap-southeast-1]:
+Default output format [json]:
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree$ cd terraform
+raform initrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform init
+Command 'terraform' not found, but can be installed with:
+sudo snap install terraform
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ sudo snap install terraform
+[sudo] password for rae:
+error: This revision of snap "terraform" was published using classic confinement and thus may
+       perform arbitrary system changes outside of the security sandbox that snaps are usually
+       confined to, which may put your system at risk.
+
+       If you understand and want to proceed repeat the command including --classic.
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Download the HashiCorp GPG key
+wget -Orae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+ Add the HashiCorp repository
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+# Update apt and install Terraform
+sudo apt update && sudo apt install terraform--2025-04-04 19:56:14--  https://apt.releases.hashicorp.com/gpg
+File '/usr/share/keyrings/hashicorp-archive-keyring.gpg' exists.
+# Add the HashiCorp repository
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+# Update apt and install Terraform
+sudo apt update && sudo apt install terraformOverwrite? (y/N)
+Enter new filename: # Add the HashiCorp repository
+Resolving apt.releases.hashicorp.com (apt.releases.hashicorp.com)... 18.172.21.43, 18.172.21.67, 18.172.21.123, ...
+                                                                                                                   Connecting to apt.releases.hashicorp.com (apt.releases.hashicorp.com)|18.172.21.43|:443... connected.
+                                                                                                   HTTP request sent, awaiting response... 200 OK
+                            Length: 3980 (3.9K) [binary/octet-stream]
+                                                                     Saving to: ‘STDOUT’
+
+-                             100%[==============================================>]   3.89K  --.-KB/s    in 0s
+
+                                                                                                                    2025-04-04 19:56:15 (282 MB/s) - written to stdout [3980/3980]
+
+                                                             rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Download Terraform
+wget httrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ wget https://releases.hashicorp.com/terraform/1raform_1.7.5_linux_amd64.zip
+
+# Install unzip if you don't have it
+sudo apt install unzip
+
+# Unzip the file
+unzip terraform_1.7.5_linux_amd64.zip
+
+# Move to a directory in your PATH
+sudo mv terraform /usr/loc--2025-04-04 19:56:32--  https://releases.hashicorp.com/terraform/1.7.5/terraform_1.7.5_linux_amd64.zip
+al/bin/Resolving releases.hashicorp.com (releases.hashicorp.com)... 108.158.213.55, 108.158.213.124, 108.158.213.118, ...
+Connecting to releases.hashicorp.com (releases.hashicorp.com)|108.158.213.55|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 25959930 (25M) [application/zip]
+Saving to: ‘terraform_1.7.5_linux_amd64.zip’
+
+terraform_1.7.5_linux_amd64.z   0%[                                               ]       0  --.-KB/s
+terraform_1.7.5_linux_amd64.z 100%[==============================================>]  24.76M  15.5MB/s    in 1.6s
+
+2025-04-04 19:56:34 (15.5 MB/s) - ‘terraform_1.7.5_linux_amd64.zip’ saved [25959930/25959930]
+
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Install unzip if you don't have it
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ sudo apt install unzip
+
+# Unzip the file
+unzip terraform_1.7.5_linux_amd64.zip
+
+# Move to a directory in your PATH
+sudo mv terraform /usr/local/bin/
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+unzip is already the newest version (6.0-28ubuntu4.1).
+0 upgraded, 0 newly installed, 0 to remove and 8 not upgraded.
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ cd /mnt/c/Users/KHARDZ/Desktop/Week\ 3/Oaktree/terraform
+form init
+terraform plan -out tfplan
+terraform apply tfplanrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform init
+Command 'terraform' not found, but can be installed with:
+sudo snap install terraform
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform plan -out tfplan
+Command 'terraform' not found, but can be installed with:
+sudo snap install terraform
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform apply tfplan# Unzip the file
+ terraform_1.7.5_linux_amd64.zip
+
+# Move to a directory in your PATH
+sudo mv terraform /usr/local/bin/Command 'terraform' not found, but can be installed with:
+sudo snap install terraform
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ unzip terraform_1.7.5_linux_amd64.zip
+Archive:  terraform_1.7.5_linux_amd64.zip
+  inflating: terraform               # Unzip the file
+unzip terraform_1.7.5_linux_amd64.zip
+
+# Move to a directory in your PATH
+sudo mv terraform /usr/local/bin/
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Move to a directory in your PATH
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ sudo mv terraform /usr/local/bin/# Unzip the file
+unzip terraform_1.7.5_linux_amd64.zip
+
+# Move to a directory in your PATH
+sudo mv terraform /usr/local/bin/mv: target 'file': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ cd /mnt/c/Users/KHARDZ/Desktop/Week\ 3/Oaktree/terraform
+rm_1.7.5_linux_amd64.zip
+sudo mv terraform /usr/local/bin/rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ unzip terraform_1.7.5_linux_amd64.zip
+Archive:  terraform_1.7.5_linux_amd64.zip
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [sudo mv t]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [erraform ]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [/usr/loca]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: unzip terraform_1.7.5_linux_amd64.zip
+error:  invalid response [l/bin/unz]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [ip terraf]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [orm_1.7.5]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [_linux_am]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [d64.zip]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^Crae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ unzip terraform_1.7.5_linux_amd64.zip
+Archive:  terraform_1.7.5_linux_amd64.zip
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^Crae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ ls -l | grep terraform
+-rwxrwxrwx 1 rae rae 84525056 Mar 14  2024 terraform
+-rwxrwxrwx 1 rae rae 25959930 Mar 14  2024 terraform_1.7.5_linux_amd64.zip
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ ls -l | grep terraform
+-rwxrwxrwx 1 rae rae 84525056 Mar 14  2024 terraform
+-rwxrwxrwx 1 rae rae 25959930 Mar 14  2024 terraform_1.7.5_linux_amd64.zip
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ sudo mv terraform /usr/local/bin/
+hmod +x /usr/local/bin/terraform
+sudo chmod +x /usr/local/bin/terraform
+
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform version
+
+Terraform v1.7.5
+on linux_amd64
+
+Your version of Terraform is out of date! The latest version
+is 1.11.3. You can update by downloading from https://www.terraform.io/downloads.html
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ sudo rm -rf /usr/local/bin/terraform
+o rm -rf ~/.terraform.d
+rm -f terraform_1.7.5_linux_amd64.zip
+sudo apt remove terraform
+sudo rm -rf ~/.terraform.d
+rm -f terraform_1.7.5_linux_amd64.zip
+sudo apt remove terraform
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ sudo apt update
+sudo apt upgrade -y
+sudo apt upgrade -y
+
+Hit:1 https://deb.nodesource.com/node_18.x nodistro InRelease
+Hit:3 https://apt.releases.hashicorp.com noble InRelease
+Get:4 https://download.docker.com/linux/ubuntu noble InRelease [48.8 kB]
+Hit:5 http://archive.ubuntu.com/ubuntu noble InRelease
+Hit:6 http://security.ubuntu.com/ubuntu noble-security InRelease
+Get:7 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Hit:8 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Ign:2 https://pkg.jenkins.io/debian binary/ InRelease
+Hit:9 https://pkg.jenkins.io/debian binary/ Release
+Fetched 175 kB in 16s (11.1 kB/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+8 packages can be upgraded. Run 'apt list --upgradable' to see them.
+W: http://pkg.jenkins.io/debian/binary/Release.gpg: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Add HashiCorp's official GPG key
+O- httprae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+# Add Terraform repository
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main"--2025-04-04 20:00:25--  https://apt.releases.hashicorp.com/gpg
+ | sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+# Install Terraform
+sudo apt update
+sudo apt install terraform -y
+File '/usr/share/keyrings/hashicorp-archive-keyring.gpg' exists. Overwrite? (y/N)
+Enter new filename: # Add Terraform repository
+Resolving apt.releases.hashicorp.com (apt.releases.hashicorp.com)... 18.172.21.119, 18.172.21.67, 18.172.21.43, ...
+                                                                                                                   Connecting to apt.releases.hashicorp.com (apt.releases.hashicorp.com)|18.172.21.119|:443... connected.
+                                                                                                    HTTP request sent, awaiting response... 200 OK
+                             Length: 3980 (3.9K) [binary/octet-stream]
+                                                                      Saving to: ‘STDOUT’
+
+-                             100%[==============================================>]   3.89K  --.-KB/s    in 0s
+
+                                                                                                                    2025-04-04 20:00:25 (294 MB/s) - written to stdout [3980/3980]
+
+                                                             rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform version
+-bash: /usr/local/bin/terraform: No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Add Terraform repository
+ho "debrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main"--2025-04-04 20:00:25--  https://apt.releases.hashicorp.com/gpg
+/etc/apt/sources.list.d/hashicorp.list
+
+# Install Terraform
+sudo apt update
+sudo apt install terraform -y
+File '/usr/share/keyrings/hashicorp-archive-keyring.gpg' exists. Overwrite? (y/N)
+Enter new filename: # Add Terraform repository
+Resolving apt.releases.hashicorp.com (apt.releases.hashicorp.com)... 18.172.21.119, 18.172.21.67, 18.172.21.43, ...
+                                                                                                                   Connecting to apt.releases.hashicorp.com (apt.releases.hashicorp.com)|18.172.21.119|:443... connected.
+                                deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com noble main--2025-04-04 20:00:25-- https://apt.releases.hashicorp.com/gpg
+                rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$  | sudo tee /etc/apt/sources.list.d/hashicorp.list
+-bash: syntax error near unexpected token `|'
+        rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Install Terraform
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ sudo apt update
+                                    HTTP request sent, awaiting response... 200 OK
+                             Length: 3980 (3.9K) [binary/octet-stream]
+                                   sudo apt install terraform -y
+File '/usr/share/keyrings/hashicorp-archive-keyring.gpg' exists. Overwrite? (y/N)
+Enter new filename: # Add Terraform repository
+Resolving apt.releases.hashicorp.com (apt.releases.hashicorp.com)... 18.172.21.119, 18.172.21.67, 18.172.21.43, ...
+                                                                                                                   Connecting to apt.releases.hashicorp.com (apt.releases.hashicorp.com)|18.172.21.119|:443... connected.
+                                                                                                    HTTP request sent, awaiting response... 200 OK
+                             Length: 3980 (3.9K) [binary/octet-stream]
+                                                                      Saving to: ‘STDOUT’
+
+-                             100%[==============================================>]   3.89K  --.-KB/s    in 0s
+
+                                                                                                                    2025-04-04 20:00:25 (294 MB/s) - written to stdout [3980/3980]
+
+                                                             rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform version
+-bash: /usr/local/bin/terraform: No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+(Reading database ... 54031 files and directories currently installed.)
+Preparing to unpack .../0-rsyslog_8.2312.0-3ubuntu9.1_amd64.deb ...
+Unpacking rsyslog (8.2312.0-3ubuntu9.1) over (8.2312.0-3ubuntu9) ...
+Preparing to unpack .../1-openssh-client_1%3a9.6p1-3ubuntu13.9_amd64.deb ...
+Unpacking openssh-client (1:9.6p1-3ubuntu13.9) over (1:9.6p1-3ubuntu13.8) ...
+Preparing to unpack .../2-containerd.io_1.7.27-1_amd64.deb ...
+Unpacking containerd.io (1.7.27-1) over (1.7.25-1) ...
+Preparing to unpack .../3-docker-ce-cli_5%3a28.0.4-1~ubuntu.24.04~noble_amd64.deb ...
+Unpacking docker-ce-cli (5:28.0.4-1~ubuntu.24.04~noble) over (5:28.0.2-1~ubuntu.24.04~noble) ....................]
+Preparing to unpack .../5-docker-ce-rootless-extras_5%3a28.0.4-1~ubuntu.24.04~noble_amd64.deb ...................]
+Unpacking docker-ce-rootless-extras (5:28.0.4-1~ubuntu.24.04~noble) over (5:28.0.2-1~ubuntu.24.04~noble) ........]
+Preparing to unpack .../7-cloud-init_24.4.1-0ubuntu0~24.04.2_all.deb ............................................]
+Unpacking cloud-init (24.4.1-0ubuntu0~24.04.2) over (24.4.1-0ubuntu0~24.04.1) ...................................]
+Setting up cloud-init (24.4.1-0ubuntu0~24.04.2) ...#############.................................................]
+Setting up openssh-client (1:9.6p1-3ubuntu13.9) ...##################............................................]
+Setting up rsyslog (8.2312.0-3ubuntu9.1) ...###############################......................................]
+Installing new version of config file /etc/apparmor.d/usr.sbin.rsyslogd ...
+info: The user `syslog' is already a member of `adm'.#########################...................................]
+Setting up nodejs (18.20.8-1nodesource1) ...#####################################................................]
+Setting up containerd.io (1.7.27-1) ...################################################..........................]
+Setting up docker-ce-cli (5:28.0.4-1~ubuntu.24.04~noble) ...################################.....................]
+Setting up docker-ce-rootless-extras (5:28.0.4-1~ubuntu.24.04~noble) ...##########################...............] pg
+Setting up docker-ce (5:28.0.4-1~ubuntu.24.04~noble) ...################################################.........]
+Processing triggers for man-db (2.12.0-4build2) ...###########################################################...]
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ ^C
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ qqq
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ sudo rm -rf /usr/local/bin/terraform
+o rm -rf ~/.terraform.d
+sudo apt remove terraform -y
+sudo rm -rf ~/.terraform.d
+sudo apt remove terraform -y
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ sudo apt update && sudo apt upgrade -y
+0% [Working]
+Hit:2 https://download.docker.com/linux/ubuntu noble InRelease
+Hit:3 https://deb.nodesource.com/node_18.x nodistro InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu noble InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:6 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Hit:7 https://apt.releases.hashicorp.com noble InRelease
+Ign:1 https://pkg.jenkins.io/debian binary/ InRelease
+Hit:8 https://pkg.jenkins.io/debian binary/ Release
+Hit:10 http://security.ubuntu.com/ubuntu noble-security InRelease
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+8 packages can be upgraded. Run 'apt list --upgradable' to see them.
+W: http://pkg.jenkins.io/debian/binary/Release.gpg: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg
+), see the DEPRECATION section in apt-key(8) for details.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Calculating upgrade... Done
+The following packages will be upgraded:
+  cloud-init containerd.io docker-ce docker-ce-cli docker-ce-rootless-extras nodejs openssh-client rsyslog
+8 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Need to get 103 MB of archives.
+After this operation, 3655 kB of additional disk space will be used.
+Get:1 https://download.docker.com/linux/ubuntu noble/stable amd64 containerd.io amd64 1.7.27-1 [30.5 MB]
+Get:2 https://download.docker.com/linux/ubuntu noble/stable amd64 docker-ce-cli amd64 5:28.0.4-1~ubuntu.24.04~noble [
+15.8 MB]
+Get:3 https://download.docker.com/linux/ubuntu noble/stable amd64 docker-ce amd64 5:28.0.4-1~ubuntu.24.04~noble [19.1
+ MB]
+Get:4 https://download.docker.com/linux/ubuntu noble/stable amd64 docker-ce-rootless-extras amd64 5:28.0.4-1~ubuntu.2
+4.04~noble [6092 kB]
+Get:5 https://deb.nodesource.com/node_18.x nodistro/main amd64 nodejs amd64 18.20.8-1nodesource1 [29.7 MB]
+Get:6 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 rsyslog amd64 8.2312.0-3ubuntu9.1 [511 kB]
+Get:7 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssh-client amd64 1:9.6p1-3ubuntu13.9 [905 kB]
+Get:8 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 cloud-init all 24.4.1-0ubuntu0~24.04.2 [604 kB]
+Fetched 103 MB in 6s (17.8 MB/s)
+Preconfiguring packages ...
+
+
+
+^Crae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ ^C
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform init
+Command 'terraform' not found, but can be installed with:
+sudo snap install terraform
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+

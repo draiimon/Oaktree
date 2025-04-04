@@ -1,0 +1,323 @@
+orm init
+terraform plan -out tfplan
+terraform apply tfplanrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform init
+
+Initializing the backend...
+Initializing modules...
+- ecr in modules/ecr
+- ecs in modules/ecs
+- networking in modules/networking
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/ecr/outputs.tf line 4:
+│    4: output "repository_url" {
+│
+│ An output named "repository_url" was already defined at modules/ecr/main.tf:53,1-24. Output names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/ecr/outputs.tf line 9:
+│    9: output "repository_name" {
+│
+│ An output named "repository_name" was already defined at modules/ecr/main.tf:58,1-25. Output names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/ecr/variables.tf line 9:
+│    9: variable "environment" {
+│
+│ A variable named "environment" was already declared at modules/ecr/main.tf:11,1-23. Variable names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/ecs/outputs.tf line 9:
+│    9: output "cluster_name" {
+│
+│ An output named "cluster_name" was already defined at modules/ecs/main.tf:417,1-22. Output names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/ecs/outputs.tf line 19:
+│   19: output "service_name" {
+│
+│ An output named "service_name" was already defined at modules/ecs/main.tf:422,1-22. Output names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/ecs/outputs.tf line 24:
+│   24: output "task_definition_arn" {
+│
+│ An output named "task_definition_arn" was already defined at modules/ecs/main.tf:427,1-29. Output names must be
+│ unique within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/ecs/variables.tf line 4:
+│    4: variable "vpc_id" {
+│
+│ A variable named "vpc_id" was already declared at modules/ecs/main.tf:61,1-18. Variable names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/ecs/variables.tf line 24:
+│   24: variable "app_port" {
+│
+│ A variable named "app_port" was already declared at modules/ecs/main.tf:16,1-20. Variable names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/ecs/variables.tf line 29:
+│   29: variable "ecr_repository_url" {
+│
+│ A variable named "ecr_repository_url" was already declared at modules/ecs/main.tf:56,1-30. Variable names must be
+│ unique within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/ecs/variables.tf line 34:
+│   34: variable "environment" {
+│
+│ A variable named "environment" was already declared at modules/ecs/main.tf:11,1-23. Variable names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/networking/outputs.tf line 4:
+│    4: output "vpc_id" {
+│
+│ An output named "vpc_id" was already defined at modules/networking/main.tf:158,1-16. Output names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/networking/outputs.tf line 9:
+│    9: output "public_subnet_ids" {
+│
+│ An output named "public_subnet_ids" was already defined at modules/networking/main.tf:163,1-27. Output names must
+│ be unique within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/networking/outputs.tf line 14:
+│   14: output "private_subnet_ids" {
+│
+│ An output named "private_subnet_ids" was already defined at modules/networking/main.tf:168,1-28. Output names must
+│ be unique within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/networking/variables.tf line 4:
+│    4: variable "vpc_cidr" {
+│
+│ A variable named "vpc_cidr" was already declared at modules/networking/main.tf:16,1-20. Variable names must be
+│ unique within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/networking/variables.tf line 9:
+│    9: variable "public_subnet_cidrs" {
+│
+│ A variable named "public_subnet_cidrs" was already declared at modules/networking/main.tf:21,1-31. Variable names
+│ must be unique within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/networking/variables.tf line 14:
+│   14: variable "private_subnet_cidrs" {
+│
+│ A variable named "private_subnet_cidrs" was already declared at modules/networking/main.tf:26,1-32. Variable names
+│ must be unique within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/networking/variables.tf line 24:
+│   24: variable "environment" {
+│
+│ A variable named "environment" was already declared at modules/networking/main.tf:11,1-23. Variable names must be
+│ unique within a module.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform plan -out tfplan
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/ecr/outputs.tf line 4:
+│    4: output "repository_url" {
+│
+│ An output named "repository_url" was already defined at modules/ecr/main.tf:53,1-24. Output names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/ecr/outputs.tf line 9:
+│    9: output "repository_name" {
+│
+│ An output named "repository_name" was already defined at modules/ecr/main.tf:58,1-25. Output names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/ecr/variables.tf line 9:
+│    9: variable "environment" {
+│
+│ A variable named "environment" was already declared at modules/ecr/main.tf:11,1-23. Variable names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/ecs/outputs.tf line 9:
+│    9: output "cluster_name" {
+│
+│ An output named "cluster_name" was already defined at modules/ecs/main.tf:417,1-22. Output names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/ecs/outputs.tf line 19:
+│   19: output "service_name" {
+│
+│ An output named "service_name" was already defined at modules/ecs/main.tf:422,1-22. Output names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/ecs/outputs.tf line 24:
+│   24: output "task_definition_arn" {
+│
+│ An output named "task_definition_arn" was already defined at modules/ecs/main.tf:427,1-29. Output names must be
+│ unique within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/ecs/variables.tf line 4:
+│    4: variable "vpc_id" {
+│
+│ A variable named "vpc_id" was already declared at modules/ecs/main.tf:61,1-18. Variable names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/ecs/variables.tf line 24:
+│   24: variable "app_port" {
+│
+│ A variable named "app_port" was already declared at modules/ecs/main.tf:16,1-20. Variable names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/ecs/variables.tf line 29:
+│   29: variable "ecr_repository_url" {
+│
+│ A variable named "ecr_repository_url" was already declared at modules/ecs/main.tf:56,1-30. Variable names must be
+│ unique within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/ecs/variables.tf line 34:
+│   34: variable "environment" {
+│
+│ A variable named "environment" was already declared at modules/ecs/main.tf:11,1-23. Variable names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/networking/outputs.tf line 4:
+│    4: output "vpc_id" {
+│
+│ An output named "vpc_id" was already defined at modules/networking/main.tf:158,1-16. Output names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/networking/outputs.tf line 9:
+│    9: output "public_subnet_ids" {
+│
+│ An output named "public_subnet_ids" was already defined at modules/networking/main.tf:163,1-27. Output names must
+│ be unique within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/networking/outputs.tf line 14:
+│   14: output "private_subnet_ids" {
+│
+│ An output named "private_subnet_ids" was already defined at modules/networking/main.tf:168,1-28. Output names must
+│ be unique within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/networking/variables.tf line 4:
+│    4: variable "vpc_cidr" {
+│
+│ A variable named "vpc_cidr" was already declared at modules/networking/main.tf:16,1-20. Variable names must be
+│ unique within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/networking/variables.tf line 9:
+│    9: variable "public_subnet_cidrs" {
+│
+│ A variable named "public_subnet_cidrs" was already declared at modules/networking/main.tf:21,1-31. Variable names
+│ must be unique within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/networking/variables.tf line 14:
+│   14: variable "private_subnet_cidrs" {
+│
+│ A variable named "private_subnet_cidrs" was already declared at modules/networking/main.tf:26,1-32. Variable names
+│ must be unique within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/networking/variables.tf line 24:
+│   24: variable "environment" {
+│
+│ A variable named "environment" was already declared at modules/networking/main.tf:11,1-23. Variable names must be
+│ unique within a module.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform apply tfplan
+╷
+│ Error: Failed to load "tfplan" as a plan file
+│
+│ Error: stat tfplan: no such file or directory
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$

@@ -1,0 +1,59 @@
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ sudo apt install unzip
+
+# Unzip the file
+unzip terraform_1.7.5_linux_amd64.zip
+
+# Move to a directory in your PATH
+sudo mv terraform /usr/local/bin/
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+unzip is already the newest version (6.0-28ubuntu4.1).
+0 upgraded, 0 newly installed, 0 to remove and 8 not upgraded.
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ cd /mnt/c/Users/KHARDZ/Desktop/Week\ 3/Oaktree/terraform
+form init
+terraform plan -out tfplan
+terraform apply tfplanrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform init
+Command 'terraform' not found, but can be installed with:
+sudo snap install terraform
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform plan -out tfplan
+Command 'terraform' not found, but can be installed with:
+sudo snap install terraform
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform apply tfplan# Unzip the file
+ terraform_1.7.5_linux_amd64.zip
+
+# Move to a directory in your PATH
+sudo mv terraform /usr/local/bin/Command 'terraform' not found, but can be installed with:
+sudo snap install terraform
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ unzip terraform_1.7.5_linux_amd64.zip
+Archive:  terraform_1.7.5_linux_amd64.zip
+  inflating: terraform               # Unzip the file
+unzip terraform_1.7.5_linux_amd64.zip
+
+# Move to a directory in your PATH
+sudo mv terraform /usr/local/bin/
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Move to a directory in your PATH
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ sudo mv terraform /usr/local/bin/# Unzip the file
+unzip terraform_1.7.5_linux_amd64.zip
+
+# Move to a directory in your PATH
+sudo mv terraform /usr/local/bin/mv: target 'file': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ cd /mnt/c/Users/KHARDZ/Desktop/Week\ 3/Oaktree/terraform
+rm_1.7.5_linux_amd64.zip
+sudo mv terraform /usr/local/bin/rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ unzip terraform_1.7.5_linux_amd64.zip
+Archive:  terraform_1.7.5_linux_amd64.zip
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [sudo mv t]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [erraform ]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [/usr/loca]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: unzip terraform_1.7.5_linux_amd64.zip
+error:  invalid response [l/bin/unz]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [ip terraf]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [orm_1.7.5]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [_linux_am]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: error:  invalid response [d64.zip]
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^Crae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ unzip terraform_1.7.5_linux_amd64.zip
+Archive:  terraform_1.7.5_linux_amd64.zip
+replace terraform? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^Crae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+
+
