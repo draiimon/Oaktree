@@ -1,43 +1,6 @@
-variable "project_name" {
-  description = "Name of the project"
-  type        = string
-}
-
 variable "environment" {
-  description = "Environment (e.g. dev, staging, prod)"
+  description = "The environment (dev, staging, prod)"
   type        = string
-}
-
-variable "app_port" {
-  description = "Port on which the application container listens"
-  type        = number
-}
-
-variable "app_count" {
-  description = "Number of application instances to run"
-  type        = number
-  default     = 2
-}
-
-variable "cpu" {
-  description = "CPU units for the Fargate task (1024 units = 1 vCPU)"
-  type        = number
-}
-
-variable "memory" {
-  description = "Memory for the Fargate task in MiB"
-  type        = number
-}
-
-variable "container_name" {
-  description = "Name of the container"
-  type        = string
-}
-
-variable "health_check_path" {
-  description = "Path for health checks"
-  type        = string
-  default     = "/"
 }
 
 variable "ecr_repository_url" {
@@ -46,28 +9,69 @@ variable "ecr_repository_url" {
 }
 
 variable "vpc_id" {
-  description = "ID of the VPC where resources will be created"
+  description = "The ID of the VPC"
   type        = string
 }
 
 variable "public_subnet_ids" {
-  description = "List of public subnet IDs"
+  description = "IDs of public subnets"
   type        = list(string)
 }
 
 variable "private_subnet_ids" {
-  description = "List of private subnet IDs"
+  description = "IDs of private subnets"
   type        = list(string)
 }
 
+variable "app_port" {
+  description = "Port the app runs on"
+  type        = number
+  default     = 3000
+}
+
+variable "health_check_path" {
+  description = "Health check path for the load balancer"
+  type        = string
+  default     = "/"
+}
+
+variable "container_memory" {
+  description = "Container memory in MiB"
+  type        = number
+  default     = 512
+}
+
+variable "container_cpu" {
+  description = "Container CPU units"
+  type        = number
+  default     = 256
+}
+
 variable "desired_count" {
-  description = "Desired number of tasks"
+  description = "Desired number of containers"
+  type        = number
+  default     = 2
+}
+
+variable "max_count" {
+  description = "Maximum number of containers"
+  type        = number
+  default     = 4
+}
+
+variable "min_count" {
+  description = "Minimum number of containers"
   type        = number
   default     = 1
 }
 
-variable "max_capacity" {
-  description = "Maximum number of tasks for autoscaling"
-  type        = number
-  default     = 2
+variable "service_name" {
+  description = "Name of the ECS service"
+  type        = string
+}
+
+variable "tags" {
+  description = "Tags to apply to resources"
+  type        = map(string)
+  default     = {}
 }

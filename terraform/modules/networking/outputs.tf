@@ -1,24 +1,14 @@
 output "vpc_id" {
-  description = "ID of the VPC"
-  value       = var.vpc_id
-}
-
-output "vpc_cidr" {
-  description = "CIDR block of the VPC"
-  value       = var.vpc_cidr
+  description = "The ID of the VPC"
+  value       = aws_vpc.main.id
 }
 
 output "public_subnet_ids" {
-  description = "IDs of the public subnets"
-  value       = var.public_subnet_ids
+  description = "The IDs of the public subnets"
+  value       = aws_subnet.public[*].id
 }
 
 output "private_subnet_ids" {
-  description = "IDs of the private subnets"
-  value       = var.private_subnet_ids
-}
-
-output "availability_zones" {
-  description = "List of availability zones"
-  value       = var.availability_zones
+  description = "The IDs of the private subnets"
+  value       = aws_subnet.private[*].id
 }

@@ -1,44 +1,30 @@
-variable "project_name" {
-  description = "Project name used for tagging resources"
-  type        = string
-}
-
 variable "environment" {
-  description = "Environment name (e.g. dev, staging, prod)"
-  type        = string
-}
-
-variable "vpc_id" {
-  description = "ID of the existing VPC to use"
+  description = "The environment (dev, staging, prod)"
   type        = string
 }
 
 variable "vpc_cidr" {
-  description = "CIDR block for the VPC"
+  description = "The CIDR block for the VPC"
   type        = string
 }
 
-variable "public_subnet_cidrs" {
-  description = "CIDR blocks for public subnets"
+variable "azs" {
+  description = "Availability zones"
   type        = list(string)
 }
 
-variable "private_subnet_cidrs" {
-  description = "CIDR blocks for private subnets"
+variable "public_subnets" {
+  description = "Public subnet CIDR blocks"
   type        = list(string)
 }
 
-variable "public_subnet_ids" {
-  description = "IDs of the existing public subnets"
+variable "private_subnets" {
+  description = "Private subnet CIDR blocks"
   type        = list(string)
 }
 
-variable "private_subnet_ids" {
-  description = "IDs of the existing private subnets"
-  type        = list(string)
-}
-
-variable "availability_zones" {
-  description = "List of availability zones"
-  type        = list(string)
+variable "tags" {
+  description = "Tags to apply to resources"
+  type        = map(string)
+  default     = {}
 }

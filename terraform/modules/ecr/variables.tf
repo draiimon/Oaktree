@@ -1,9 +1,15 @@
-variable "project_name" {
-  description = "Project name used for naming the repository"
+variable "environment" {
+  description = "The environment (dev, staging, prod)"
   type        = string
 }
 
-variable "environment" {
-  description = "Environment name (e.g. dev, staging, prod)"
+variable "repository_name" {
+  description = "Name of the ECR repository"
   type        = string
+}
+
+variable "tags" {
+  description = "Tags to apply to resources"
+  type        = map(string)
+  default     = {}
 }
