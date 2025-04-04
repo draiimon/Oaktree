@@ -1,8 +1,8 @@
-# Week 3: Cloud Services & Infrastructure as Code - Day 1 (March 24, 2025)
+# Week 3: Cloud Services & Infrastructure as Code - Day 12 (March 24, 2025)
 
 ## Introduction
 
-Today marks the commencement of Week 3, focusing on Cloud Services and Infrastructure as Code (IaC). The primary objective for this week is to deploy a containerized application on AWS using Terraform for infrastructure management. This documentation chronicles Day 1, where I established foundational knowledge and tools necessary for the project.
+Today marks the commencement of Week 3, focusing on Cloud Services and Infrastructure as Code (IaC). The primary objective for this week is to deploy a containerized application on AWS using Terraform for infrastructure management. This documentation chronicles Day 12, where I established foundational knowledge and tools necessary for the project.
 
 ## Objectives
 
@@ -66,25 +66,25 @@ I decided on ECS (Elastic Container Service) over EKS (Elastic Kubernetes Servic
 ## Resources & References
 
 ### AWS Documentation
-- [AWS Free Tier Overview](https://aws.amazon.com/free/)
-- [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
-- [AWS CLI Installation Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-- [Getting Started with Amazon ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/getting-started.html)
+- AWS Free Tier Overview
+- IAM Best Practices
+- AWS CLI Installation Guide
+- Getting Started with Amazon ECS
 
 ### Container Technologies
-- [AWS Containers Services Overview](https://aws.amazon.com/containers/)
-- [Docker Documentation](https://docs.docker.com/)
-- [ECS vs EKS Comparison](https://aws.amazon.com/blogs/containers/amazon-ecs-vs-amazon-eks-making-sense-of-aws-container-services/)
+- AWS Containers Services Overview
+- Docker Documentation
+- ECS vs EKS Comparison
 
 ### Networking Resources
-- [VPC Documentation](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)
-- [AWS Networking Fundamentals](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Networking.html)
-- [AWS Security Best Practices](https://aws.amazon.com/architecture/security-identity-compliance/)
+- VPC Documentation
+- AWS Networking Fundamentals
+- AWS Security Best Practices
 
 ### Tutorials & Guides
-- [AWS Workshop - ECS Deep Dive](https://ecsworkshop.com/)
-- [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/)
-- [AWS Skill Builder - Cloud Essentials](https://explore.skillbuilder.aws/learn/course/external/view/elearning/134/aws-cloud-practitioner-essentials)
+- AWS Workshop - ECS Deep Dive
+- AWS Well-Architected Framework
+- AWS Skill Builder - Cloud Essentials
 
 ## Challenges & Solutions
 
@@ -116,11 +116,11 @@ Choosing the most appropriate container orchestration service between Amazon ECS
 
 For documentation and reference purposes, I've captured screenshots of key configurations:
 
-1. AWS Management Console: [https://console.aws.amazon.com/console/home](https://console.aws.amazon.com/console/home)
-2. IAM User Creation: [https://console.aws.amazon.com/iamv2/home#/users/create](https://console.aws.amazon.com/iamv2/home#/users/create)
-3. IAM Security Credentials: [https://console.aws.amazon.com/iamv2/home#/security_credentials](https://console.aws.amazon.com/iamv2/home#/security_credentials)
-4. AWS Free Tier Dashboard: [https://console.aws.amazon.com/billing/home#/freetier](https://console.aws.amazon.com/billing/home#/freetier)
-5. ECS Service Overview: [https://console.aws.amazon.com/ecs/home](https://console.aws.amazon.com/ecs/home)
+1. AWS Management Console
+2. IAM User Creation
+3. IAM Security Credentials
+4. AWS Free Tier Dashboard
+5. ECS Service Overview
 
 ## Tomorrow's Plan (March 25)
 
@@ -133,6 +133,6 @@ For documentation and reference purposes, I've captured screenshots of key confi
 
 ## Conclusion
 
-Day 1 has provided a solid foundation for the Week 3 project on Cloud Services and Infrastructure as Code. By establishing AWS accounts, selecting appropriate services, and setting up the necessary tools, I'm well-positioned to begin implementing infrastructure as code with Terraform tomorrow. This methodical approach to cloud infrastructure will ensure a secure, scalable, and maintainable deployment for the containerized application.
+Day 12 has provided a solid foundation for the Week 3 project on Cloud Services and Infrastructure as Code. By establishing AWS accounts, selecting appropriate services, and setting up the necessary tools, I'm well-positioned to begin implementing infrastructure as code with Terraform tomorrow. This methodical approach to cloud infrastructure will ensure a secure, scalable, and maintainable deployment for the containerized application.
 
 The knowledge gained today about AWS services, IAM security, and containerization principles will be instrumental throughout this week as I progress from planning to implementation and finally to deployment. I look forward to leveraging these insights as I move forward with the project.
