@@ -1,4 +1,4 @@
-# Week 3: Cloud Services & Infrastructure as Code - Day 16 (March 28, 2023)
+# Week 3: Cloud Services & Infrastructure as Code - Day 16 (March 28)
 
 ## Introduction
 

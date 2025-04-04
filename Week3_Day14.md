@@ -1,4 +1,4 @@
-# Week 3: Cloud Services & Infrastructure as Code - Day 14 (March 26, 2023)
+# Week 3: Cloud Services & Infrastructure as Code - Day 14 (March 26)
 
 ## Introduction
 
@@ -45,7 +45,7 @@ For documentation and reference purposes, I've captured screenshots of key confi
 5. Route Table Configurations
 6. ECR Repository Creation
 
-## Tomorrow's Plan (March 27, 2023)
+## Tomorrow's Plan (March 27)
 
 1. Implement ECS cluster configuration with Fargate launch type
 2. Create task definitions and service configurations for the container application
