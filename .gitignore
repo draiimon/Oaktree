@@ -19,3 +19,4 @@ terraform.tfstate.backup
 .env.test
 .env.production
 *.log
+oaktree-week3-project.zip
