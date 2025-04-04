@@ -2,22 +2,27 @@
 variable "aws_region" {
   description = "AWS region to deploy resources"
   type        = string
-  default     = "us-west-2"
+  default     = "ap-southeast-1"
 }
 
 variable "environment" {
   description = "Environment name (e.g. dev, staging, prod)"
   type        = string
-  default     = "dev"
+  default     = "production"
 }
 
 variable "project_name" {
   description = "Project name used for tagging and naming resources"
   type        = string
-  default     = "cloud-app"
+  default     = "cloud-app-dev"
 }
 
 # VPC Variables
+variable "vpc_id" {
+  description = "ID of the VPC to use"
+  type        = string
+}
+
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string
@@ -36,24 +41,39 @@ variable "private_subnet_cidrs" {
   default     = ["10.0.3.0/24", "10.0.4.0/24"]
 }
 
+variable "public_subnet_ids" {
+  description = "IDs of the public subnets"
+  type        = list(string)
+}
+
+variable "private_subnet_ids" {
+  description = "IDs of the private subnets"
+  type        = list(string)
+}
+
 variable "availability_zones" {
   description = "Availability zones for the subnets"
   type        = list(string)
-  default     = ["us-west-2a", "us-west-2b"]
+  default     = ["ap-southeast-1a", "ap-southeast-1b"]
 }
 
 # ECR Variables
-variable "ecr_image_tag" {
-  description = "Default image tag for ECR repository"
+variable "ecr_repository_url" {
+  description = "URL of the ECR repository"
   type        = string
-  default     = "latest"
+}
+
+variable "container_name" {
+  description = "Name of the container"
+  type        = string
+  default     = "cloud-app-dev"
 }
 
 # ECS Variables
 variable "app_port" {
   description = "Port the application listens on"
   type        = number
-  default     = 3000
+  default     = 5000
 }
 
 variable "app_count" {
@@ -62,16 +82,28 @@ variable "app_count" {
   default     = 2
 }
 
-variable "fargate_cpu" {
+variable "cpu" {
   description = "Fargate CPU units (1024 = 1 vCPU)"
   type        = number
   default     = 256
 }
 
-variable "fargate_memory" {
+variable "memory" {
   description = "Fargate memory in MiB"
   type        = number
   default     = 512
+}
+
+variable "desired_count" {
+  description = "Desired number of tasks"
+  type        = number
+  default     = 1
+}
+
+variable "max_capacity" {
+  description = "Maximum number of tasks for autoscaling"
+  type        = number
+  default     = 2
 }
 
 variable "health_check_path" {
@@ -98,31 +130,6 @@ variable "health_check_matcher" {
   default     = "200"
 }
 
-# Autoscaling variables
-variable "autoscaling_min_capacity" {
-  description = "Minimum number of tasks for autoscaling"
-  type        = number
-  default     = 2
-}
-
-variable "autoscaling_max_capacity" {
-  description = "Maximum number of tasks for autoscaling"
-  type        = number
-  default     = 4
-}
-
-variable "cpu_target_value" {
-  description = "Target CPU utilization percentage for autoscaling"
-  type        = number
-  default     = 70
-}
-
-variable "memory_target_value" {
-  description = "Target memory utilization percentage for autoscaling"
-  type        = number
-  default     = 70
-}
-
 # Tags
 variable "tags" {
   description = "Tags to apply to all resources"
@@ -130,5 +137,6 @@ variable "tags" {
   default = {
     Terraform   = "true"
     Application = "cloud-app"
+    Environment = "production"
   }
 }

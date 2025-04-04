@@ -13,10 +13,10 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "JavaScript Cloud App"
+args = "Node.js Server"
 
 [[workflows.workflow]]
-name = "JavaScript Cloud App"
+name = "Node.js Server"
 author = "agent"
 
 [workflows.workflow.metadata]
@@ -28,7 +28,7 @@ task = "packager.installForAll"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd app && node server.js"
-waitForPort = 3000
+waitForPort = 5000
 
 [deployment]
 run = ["sh", "-c", "node server.js"]
@@ -36,3 +36,7 @@ run = ["sh", "-c", "node server.js"]
 [[ports]]
 localPort = 3000
 externalPort = 80
+
+[[ports]]
+localPort = 5000
+externalPort = 5000

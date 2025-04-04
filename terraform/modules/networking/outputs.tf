@@ -1,37 +1,24 @@
-# Outputs for Networking Module
-# Week 3: Cloud Infrastructure Project
-
 output "vpc_id" {
-  description = "The ID of the VPC"
-  value       = aws_vpc.main.id
+  description = "ID of the VPC"
+  value       = var.vpc_id
+}
+
+output "vpc_cidr" {
+  description = "CIDR block of the VPC"
+  value       = var.vpc_cidr
 }
 
 output "public_subnet_ids" {
-  description = "The IDs of the public subnets"
-  value       = aws_subnet.public[*].id
+  description = "IDs of the public subnets"
+  value       = var.public_subnet_ids
 }
 
 output "private_subnet_ids" {
-  description = "The IDs of the private subnets"
-  value       = aws_subnet.private[*].id
+  description = "IDs of the private subnets"
+  value       = var.private_subnet_ids
 }
 
-output "nat_gateway_id" {
-  description = "The ID of the NAT Gateway"
-  value       = aws_nat_gateway.nat.id
-}
-
-output "internet_gateway_id" {
-  description = "The ID of the Internet Gateway"
-  value       = aws_internet_gateway.igw.id
-}
-
-output "public_route_table_id" {
-  description = "The ID of the public route table"
-  value       = aws_route_table.public.id
-}
-
-output "private_route_table_id" {
-  description = "The ID of the private route table"
-  value       = aws_route_table.private.id
+output "availability_zones" {
+  description = "List of availability zones"
+  value       = var.availability_zones
 }

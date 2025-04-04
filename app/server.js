@@ -2,7 +2,7 @@ const express = require('express');
 const os = require('os');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 // Get system information
 const hostname = os.hostname();
@@ -22,74 +22,109 @@ app.get('/', (req, res) => {
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Cloud Deployment Info</title>
+      <title>Oaktree Innovation Cloud</title>
       <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+      <style>
+        body {
+          font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+          background: linear-gradient(135deg, #34d399 0%, #3b82f6 100%);
+        }
+        .card {
+          transition: all 0.3s ease;
+        }
+        .card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+      </style>
     </head>
-    <body class="bg-gray-100">
-      <div class="container mx-auto px-4 py-8">
-        <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-          <div class="p-6">
-            <div class="flex justify-between items-center mb-6">
-              <h1 class="text-2xl font-bold text-gray-800">HELLO OAKTREE INNOVATION!</h1>
-              <span class="px-3 py-1 rounded-full ${isEcs ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}">
-                ${isEcs ? 'AWS ECS' : 'Local Development'}
+    <body class="bg-gray-50 min-h-screen">
+      <div class="gradient-bg text-white py-12 mb-8">
+        <div class="container mx-auto px-4">
+          <h1 class="text-4xl font-bold text-center mb-2">HELLO OAKTREE INNOVATION!</h1>
+          <p class="text-xl text-center opacity-90">Cloud-Native Deployment Information</p>
+        </div>
+      </div>
+      
+      <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+          <div class="p-8">
+            <div class="flex justify-between items-center mb-8">
+              <div>
+                <h2 class="text-2xl font-bold text-gray-800">Deployment Dashboard</h2>
+                <p class="text-gray-500">Real-time cloud infrastructure information</p>
+              </div>
+              <span class="px-4 py-2 rounded-full ${isEcs ? 'bg-green-100 text-green-800 border border-green-200' : 'bg-blue-100 text-blue-800 border border-blue-200'} font-medium">
+                ${isEcs ? '🚀 AWS ECS' : '🖥️ Local Development'}
               </span>
             </div>
-            <div class="mb-4 text-xl text-center font-semibold text-indigo-600">Real Cloud Deployment Information</div>
             
-            <div class="space-y-4">
-              <div class="border-b pb-2">
-                <h2 class="text-lg font-semibold text-gray-700 mb-2">Environment</h2>
-                <div class="grid grid-cols-2 gap-4">
-                  <div>
-                    <p class="text-sm text-gray-500">AWS Region</p>
-                    <p class="font-medium">${awsRegion}</p>
+            <div class="grid md:grid-cols-2 gap-6 mt-8">
+              <div class="card bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100">
+                <h3 class="text-lg font-semibold text-blue-800 mb-4">Environment</h3>
+                <div class="space-y-4">
+                  <div class="flex justify-between items-center">
+                    <span class="text-gray-600">AWS Region</span>
+                    <span class="font-medium text-gray-900 bg-white px-3 py-1 rounded-md shadow-sm">${awsRegion}</span>
                   </div>
-                  <div>
-                    <p class="text-sm text-gray-500">ECS Task ID</p>
-                    <p class="font-medium">${ecsTaskId}</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="border-b pb-2">
-                <h2 class="text-lg font-semibold text-gray-700 mb-2">System</h2>
-                <div class="grid grid-cols-2 gap-4">
-                  <div>
-                    <p class="text-sm text-gray-500">Hostname</p>
-                    <p class="font-medium">${hostname}</p>
-                  </div>
-                  <div>
-                    <p class="text-sm text-gray-500">Platform</p>
-                    <p class="font-medium">${platform}</p>
-                  </div>
-                  <div>
-                    <p class="text-sm text-gray-500">CPU Cores</p>
-                    <p class="font-medium">${cpus}</p>
-                  </div>
-                  <div>
-                    <p class="text-sm text-gray-500">Memory</p>
-                    <p class="font-medium">${freeMemory}GB free of ${totalMemory}GB</p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-gray-600">ECS Task ID</span>
+                    <span class="font-medium text-gray-900 bg-white px-3 py-1 rounded-md shadow-sm">${ecsTaskId}</span>
                   </div>
                 </div>
               </div>
               
-              <div>
-                <h2 class="text-lg font-semibold text-gray-700 mb-2">Request Details</h2>
-                <div class="grid grid-cols-2 gap-4">
-                  <div>
-                    <p class="text-sm text-gray-500">Request IP</p>
-                    <p class="font-medium">${req.ip || req.connection.remoteAddress}</p>
+              <div class="card bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-xl border border-green-100">
+                <h3 class="text-lg font-semibold text-green-800 mb-4">System Resources</h3>
+                <div class="space-y-4">
+                  <div class="flex justify-between items-center">
+                    <span class="text-gray-600">Hostname</span>
+                    <span class="font-medium text-gray-900 bg-white px-3 py-1 rounded-md shadow-sm">${hostname}</span>
                   </div>
-                  <div>
-                    <p class="text-sm text-gray-500">User Agent</p>
-                    <p class="font-medium text-xs">${req.headers['user-agent']}</p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-gray-600">Platform</span>
+                    <span class="font-medium text-gray-900 bg-white px-3 py-1 rounded-md shadow-sm">${platform}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-100">
+                <h3 class="text-lg font-semibold text-purple-800 mb-4">Hardware</h3>
+                <div class="space-y-4">
+                  <div class="flex justify-between items-center">
+                    <span class="text-gray-600">CPU Cores</span>
+                    <span class="font-medium text-gray-900 bg-white px-3 py-1 rounded-md shadow-sm">${cpus}</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-gray-600">Memory</span>
+                    <span class="font-medium text-gray-900 bg-white px-3 py-1 rounded-md shadow-sm">${freeMemory}GB free of ${totalMemory}GB</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card bg-gradient-to-br from-yellow-50 to-amber-50 p-6 rounded-xl border border-yellow-100">
+                <h3 class="text-lg font-semibold text-amber-800 mb-4">Request Details</h3>
+                <div class="space-y-4">
+                  <div class="flex justify-between items-center">
+                    <span class="text-gray-600">Request IP</span>
+                    <span class="font-medium text-gray-900 bg-white px-3 py-1 rounded-md shadow-sm">${req.ip || req.connection.remoteAddress}</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-gray-600">User Agent</span>
+                    <span class="font-medium text-gray-900 bg-white px-3 py-1 rounded-md shadow-sm text-xs">${req.headers['user-agent']}</span>
                   </div>
                 </div>
               </div>
             </div>
+            
+            <div class="mt-10 pt-6 border-t border-gray-200 text-center">
+              <p class="text-gray-500 text-sm">Deployed using AWS ECS, Terraform IaC, and Docker</p>
+              <p class="text-gray-400 text-xs mt-1">© 2025 Oaktree Innovation</p>
+            </div>
           </div>
-
         </div>
       </div>
     </body>

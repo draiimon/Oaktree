@@ -1,36 +1,48 @@
-###################################
-# ECR Module
-###################################
+# Get current AWS region from provider configuration
+data "aws_region" "current" {}
 
-# Variables
-variable "project_name" {
-  description = "Name of the project"
-  type        = string
-}
-
-variable "environment" {
-  description = "Deployment environment"
-  type        = string
-}
-
-# Resources
-resource "aws_ecr_repository" "app" {
+# Create ECR Repository
+resource "aws_ecr_repository" "main" {
   name                 = "${var.project_name}-${var.environment}"
   image_tag_mutability = "MUTABLE"
-
+  
   image_scanning_configuration {
     scan_on_push = true
   }
-
+  
   tags = {
-    Name        = "${var.project_name}-${var.environment}-ecr"
+    Name        = "${var.project_name}-${var.environment}"
     Environment = var.environment
   }
 }
 
-resource "aws_ecr_lifecycle_policy" "app" {
-  repository = aws_ecr_repository.app.name
+# ECR Repository Policy
+resource "aws_ecr_repository_policy" "main" {
+  repository = aws_ecr_repository.main.name
+  
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid    = "AllowPull"
+        Effect = "Allow"
+        Principal = {
+          Service = "ecs.amazonaws.com"
+        }
+        Action = [
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage",
+          "ecr:BatchCheckLayerAvailability"
+        ]
+      }
+    ]
+  })
+}
 
+# ECR Lifecycle Policy
+resource "aws_ecr_lifecycle_policy" "main" {
+  repository = aws_ecr_repository.main.name
+  
   policy = jsonencode({
     rules = [
       {
@@ -47,15 +59,4 @@ resource "aws_ecr_lifecycle_policy" "app" {
       }
     ]
   })
-}
-
-# Outputs
-output "repository_url" {
-  description = "The URL of the ECR repository"
-  value       = aws_ecr_repository.app.repository_url
-}
-
-output "repository_name" {
-  description = "The name of the ECR repository"
-  value       = aws_ecr_repository.app.name
 }

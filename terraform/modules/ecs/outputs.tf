@@ -1,19 +1,29 @@
-output "alb_hostname" {
+output "alb_dns_name" {
+  description = "DNS name of the load balancer"
   value       = aws_lb.main.dns_name
-  description = "ALB DNS name"
 }
 
-output "ecs_cluster_name" {
-  value       = aws_ecs_cluster.main.name
-  description = "Name of the ECS cluster"
+output "alb_security_group_id" {
+  description = "ID of the ALB security group"
+  value       = aws_security_group.alb.id
+}
+
+output "ecs_cluster_id" {
+  description = "ID of the ECS cluster"
+  value       = aws_ecs_cluster.main.id
 }
 
 output "ecs_service_name" {
-  value       = aws_ecs_service.app.name
   description = "Name of the ECS service"
+  value       = aws_ecs_service.main.name
+}
+
+output "task_definition_arn" {
+  description = "ARN of the task definition"
+  value       = aws_ecs_task_definition.app.arn
 }
 
 output "cloudwatch_log_group_name" {
-  value       = aws_cloudwatch_log_group.app_logs.name
-  description = "Name of the CloudWatch Log Group"
+  description = "Name of the CloudWatch log group"
+  value       = aws_cloudwatch_log_group.main.name
 }

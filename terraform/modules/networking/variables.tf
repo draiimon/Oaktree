@@ -1,5 +1,17 @@
-# Variables for Networking Module
-# Week 3: Cloud Infrastructure Project
+variable "project_name" {
+  description = "Project name used for tagging resources"
+  type        = string
+}
+
+variable "environment" {
+  description = "Environment name (e.g. dev, staging, prod)"
+  type        = string
+}
+
+variable "vpc_id" {
+  description = "ID of the existing VPC to use"
+  type        = string
+}
 
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
@@ -7,27 +19,26 @@ variable "vpc_cidr" {
 }
 
 variable "public_subnet_cidrs" {
-  description = "CIDR blocks for the public subnets"
+  description = "CIDR blocks for public subnets"
   type        = list(string)
 }
 
 variable "private_subnet_cidrs" {
-  description = "CIDR blocks for the private subnets"
+  description = "CIDR blocks for private subnets"
   type        = list(string)
 }
 
-variable "azs" {
-  description = "Availability zones for the subnets"
+variable "public_subnet_ids" {
+  description = "IDs of the existing public subnets"
   type        = list(string)
 }
 
-variable "environment" {
-  description = "The deployment environment (dev, staging, prod)"
-  type        = string
+variable "private_subnet_ids" {
+  description = "IDs of the existing private subnets"
+  type        = list(string)
 }
 
-variable "tags" {
-  description = "Tags to apply to resources"
-  type        = map(string)
-  default     = {}
+variable "availability_zones" {
+  description = "List of availability zones"
+  type        = list(string)
 }

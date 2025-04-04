@@ -28,20 +28,16 @@ module "ecs" {
   environment           = var.environment
   app_port              = var.app_port
   app_count             = var.app_count
-  fargate_cpu           = var.fargate_cpu
-  fargate_memory        = var.fargate_memory
+  cpu                   = var.cpu                     # Using 'cpu' instead of 'fargate_cpu'
+  memory                = var.memory                  # Using 'memory' instead of 'fargate_memory'
   health_check_path     = var.health_check_path
-  health_check_timeout  = var.health_check_timeout
-  health_check_interval = var.health_check_interval
-  health_check_matcher  = var.health_check_matcher
-  ecr_repository_url    = module.ecr.repository_url
+  ecr_repository_url    = var.ecr_repository_url     # Using the specified ECR URL directly
+  container_name        = var.container_name
   
-  autoscaling_min_capacity = var.autoscaling_min_capacity
-  autoscaling_max_capacity = var.autoscaling_max_capacity
-  cpu_target_value      = var.cpu_target_value
-  memory_target_value   = var.memory_target_value
+  desired_count         = var.desired_count
+  max_capacity          = var.max_capacity           # Using 'max_capacity' instead of 'autoscaling_max_capacity'
 
-  vpc_id                = module.networking.vpc_id
-  public_subnets        = module.networking.public_subnet_ids
-  private_subnets       = module.networking.private_subnet_ids
+  vpc_id                = var.vpc_id                 # Using the specified VPC ID directly
+  public_subnet_ids     = var.public_subnet_ids      # Using the specified subnet IDs directly
+  private_subnet_ids    = var.private_subnet_ids     # Using the specified subnet IDs directly
 }
