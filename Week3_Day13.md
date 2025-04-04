@@ -1,4 +1,4 @@
-# Week 3: Cloud Services & Infrastructure as Code - Day 13 (March 25, 2025)
+# Week 3: Cloud Services & Infrastructure as Code - Day 13 (March 12, 2023)
 
 ## Introduction
 
@@ -198,7 +198,7 @@ For documentation and reference purposes, I've captured screenshots of key confi
 4. Terraform Init Command: Terminal Output
 5. AWS Provider Configuration: VSCode Editor
 
-## Tomorrow's Plan (March 26)
+## Tomorrow's Plan (March 13)
 
 1. Implement comprehensive networking infrastructure with VPC, subnets, and gateways
 2. Configure AWS ECR (Elastic Container Registry) for Docker image storage
