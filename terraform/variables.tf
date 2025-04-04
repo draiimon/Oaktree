@@ -1,19 +1,23 @@
-# Variables for AWS Infrastructure
-# Week 3: Cloud Infrastructure Project
-
+# General Variables
 variable "aws_region" {
-  description = "The AWS region to deploy resources"
+  description = "AWS region to deploy resources"
   type        = string
-  default     = "ap-southeast-1"
+  default     = "us-west-2"
 }
 
 variable "environment" {
-  description = "The deployment environment (dev, staging, prod)"
+  description = "Environment name (e.g. dev, staging, prod)"
   type        = string
   default     = "dev"
 }
 
-# VPC and Network variables
+variable "project_name" {
+  description = "Project name used for tagging and naming resources"
+  type        = string
+  default     = "cloud-app"
+}
+
+# VPC Variables
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string
@@ -35,36 +39,96 @@ variable "private_subnet_cidrs" {
 variable "availability_zones" {
   description = "Availability zones for the subnets"
   type        = list(string)
-  default     = ["ap-southeast-1a", "ap-southeast-1b"]
+  default     = ["us-west-2a", "us-west-2b"]
 }
 
-# Application variables
-variable "app_name" {
-  description = "Name of the application to deploy"
+# ECR Variables
+variable "ecr_image_tag" {
+  description = "Default image tag for ECR repository"
   type        = string
-  default     = "js-cloud-app"
+  default     = "latest"
 }
 
+# ECS Variables
 variable "app_port" {
-  description = "Port that the application listens on"
+  description = "Port the application listens on"
   type        = number
   default     = 3000
 }
 
-variable "cpu" {
-  description = "CPU units for the container (1024 = 1 vCPU)"
-  type        = number
-  default     = 512 # 0.5 vCPU
-}
-
-variable "memory" {
-  description = "Memory for the container in MB"
-  type        = number
-  default     = 1024 # 1 GB
-}
-
-variable "container_count" {
-  description = "Number of containers to run"
+variable "app_count" {
+  description = "Number of application containers to run"
   type        = number
   default     = 2
+}
+
+variable "fargate_cpu" {
+  description = "Fargate CPU units (1024 = 1 vCPU)"
+  type        = number
+  default     = 256
+}
+
+variable "fargate_memory" {
+  description = "Fargate memory in MiB"
+  type        = number
+  default     = 512
+}
+
+variable "health_check_path" {
+  description = "Health check path for the application"
+  type        = string
+  default     = "/"
+}
+
+variable "health_check_timeout" {
+  description = "Health check timeout in seconds"
+  type        = number
+  default     = 5
+}
+
+variable "health_check_interval" {
+  description = "Health check interval in seconds"
+  type        = number
+  default     = 30
+}
+
+variable "health_check_matcher" {
+  description = "Health check matcher HTTP code"
+  type        = string
+  default     = "200"
+}
+
+# Autoscaling variables
+variable "autoscaling_min_capacity" {
+  description = "Minimum number of tasks for autoscaling"
+  type        = number
+  default     = 2
+}
+
+variable "autoscaling_max_capacity" {
+  description = "Maximum number of tasks for autoscaling"
+  type        = number
+  default     = 4
+}
+
+variable "cpu_target_value" {
+  description = "Target CPU utilization percentage for autoscaling"
+  type        = number
+  default     = 70
+}
+
+variable "memory_target_value" {
+  description = "Target memory utilization percentage for autoscaling"
+  type        = number
+  default     = 70
+}
+
+# Tags
+variable "tags" {
+  description = "Tags to apply to all resources"
+  type        = map(string)
+  default = {
+    Terraform   = "true"
+    Application = "cloud-app"
+  }
 }

@@ -1,55 +1,47 @@
-# Main Terraform Configuration File
-# Week 3: Cloud Infrastructure Project
+# Main Terraform file that calls all modules
 
-# VPC and Networking Module
+# Networking Module
 module "networking" {
   source = "./modules/networking"
-  
-  vpc_cidr             = var.vpc_cidr
-  public_subnet_cidrs  = var.public_subnet_cidrs
-  private_subnet_cidrs = var.private_subnet_cidrs
-  azs                  = var.availability_zones
-  environment          = var.environment
-  
-  tags = {
-    Project     = "Week 3: Cloud Services"
-    Environment = var.environment
-    Terraform   = "true"
-  }
+
+  project_name          = var.project_name
+  environment           = var.environment
+  vpc_cidr              = var.vpc_cidr
+  public_subnet_cidrs   = var.public_subnet_cidrs
+  private_subnet_cidrs  = var.private_subnet_cidrs
+  availability_zones    = var.availability_zones
 }
 
-# ECR Module for Container Registry
+# ECR Module
 module "ecr" {
   source = "./modules/ecr"
-  
-  repository_name = "${var.app_name}-repo"
-  environment     = var.environment
-  
-  tags = {
-    Project     = "Week 3: Cloud Services"
-    Environment = var.environment
-    Terraform   = "true"
-  }
+
+  project_name          = var.project_name
+  environment           = var.environment
 }
 
-# ECS Module for Fargate Service
+# ECS Module
 module "ecs" {
   source = "./modules/ecs"
-  
-  vpc_id                = module.networking.vpc_id
-  public_subnet_ids     = module.networking.public_subnet_ids
-  private_subnet_ids    = module.networking.private_subnet_ids
-  app_name              = var.app_name
-  app_port              = var.app_port
-  ecr_repository_url    = module.ecr.repository_url
+
+  project_name          = var.project_name
   environment           = var.environment
-  cpu                   = var.cpu
-  memory                = var.memory
-  container_count       = var.container_count
+  app_port              = var.app_port
+  app_count             = var.app_count
+  fargate_cpu           = var.fargate_cpu
+  fargate_memory        = var.fargate_memory
+  health_check_path     = var.health_check_path
+  health_check_timeout  = var.health_check_timeout
+  health_check_interval = var.health_check_interval
+  health_check_matcher  = var.health_check_matcher
+  ecr_repository_url    = module.ecr.repository_url
   
-  tags = {
-    Project     = "Week 3: Cloud Services"
-    Environment = var.environment
-    Terraform   = "true"
-  }
+  autoscaling_min_capacity = var.autoscaling_min_capacity
+  autoscaling_max_capacity = var.autoscaling_max_capacity
+  cpu_target_value      = var.cpu_target_value
+  memory_target_value   = var.memory_target_value
+
+  vpc_id                = module.networking.vpc_id
+  public_subnets        = module.networking.public_subnet_ids
+  private_subnets       = module.networking.private_subnet_ids
 }

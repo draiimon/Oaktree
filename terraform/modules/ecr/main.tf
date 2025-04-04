@@ -1,63 +1,45 @@
-# ECR Module - Container Registry
-# Week 3: Cloud Infrastructure Project
+###################################
+# ECR Module
+###################################
 
-# Create ECR Repository
+# Variables
+variable "project_name" {
+  description = "Name of the project"
+  type        = string
+}
+
+variable "environment" {
+  description = "Deployment environment"
+  type        = string
+}
+
+# Resources
 resource "aws_ecr_repository" "app" {
-  name                 = var.repository_name
+  name                 = "${var.project_name}-${var.environment}"
   image_tag_mutability = "MUTABLE"
-  
+
   image_scanning_configuration {
     scan_on_push = true
   }
-  
-  tags = merge(
-    var.tags,
-    {
-      Name = "${var.environment}-${var.repository_name}"
-    }
-  )
+
+  tags = {
+    Name        = "${var.project_name}-${var.environment}-ecr"
+    Environment = var.environment
+  }
 }
 
-# Create ECR Repository Policy
-resource "aws_ecr_repository_policy" "app" {
-  repository = aws_ecr_repository.app.name
-  
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Sid       = "AllowPushPull"
-        Effect    = "Allow"
-        Principal = {
-          "AWS" = "*" # In production, limit this to specific roles/users
-        }
-        Action = [
-          "ecr:GetDownloadUrlForLayer",
-          "ecr:BatchGetImage",
-          "ecr:BatchCheckLayerAvailability",
-          "ecr:PutImage",
-          "ecr:InitiateLayerUpload",
-          "ecr:UploadLayerPart",
-          "ecr:CompleteLayerUpload"
-        ]
-      }
-    ]
-  })
-}
-
-# Create ECR Lifecycle Policy for Image Management
 resource "aws_ecr_lifecycle_policy" "app" {
   repository = aws_ecr_repository.app.name
-  
+
   policy = jsonencode({
     rules = [
       {
         rulePriority = 1
-        description  = "Keep only the last 5 images"
+        description  = "Keep last 10 images"
         selection = {
-          tagStatus   = "any"
-          countType   = "imageCountMoreThan"
-          countNumber = 5
+          tagStatus     = "any"
+          countType     = "imageCountMoreThan"
+          countNumber   = 10
         }
         action = {
           type = "expire"
@@ -65,4 +47,15 @@ resource "aws_ecr_lifecycle_policy" "app" {
       }
     ]
   })
+}
+
+# Outputs
+output "repository_url" {
+  description = "The URL of the ECR repository"
+  value       = aws_ecr_repository.app.repository_url
+}
+
+output "repository_name" {
+  description = "The name of the ECR repository"
+  value       = aws_ecr_repository.app.name
 }
