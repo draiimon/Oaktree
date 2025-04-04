@@ -1,0 +1,499 @@
+Successfully removed 17 resource instance(s).
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform apply
+module.ecr.aws_ecr_repository.app: Refreshing state... [id=cloud-app-dev]
+module.ecr.aws_ecr_lifecycle_policy.app: Refreshing state... [id=cloud-app-dev]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with
+the following symbols:
+  + create
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_cloudwatch_log_group.app_logs will be created
+  + resource "aws_cloudwatch_log_group" "app_logs" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + name              = "/ecs/production"
+      + name_prefix       = (known after apply)
+      + retention_in_days = 30
+      + skip_destroy      = false
+      + tags              = {
+          + "Environment" = "production"
+          + "Name"        = "production-log-group"
+        }
+      + tags_all          = {
+          + "Application" = "cloud-app"
+          + "Environment" = "production"
+          + "Name"        = "production-log-group"
+          + "Terraform"   = "true"
+        }
+    }
+
+  # aws_ecs_cluster.main will be created
+  + resource "aws_ecs_cluster" "main" {
+      + arn                = (known after apply)
+      + capacity_providers = (known after apply)
+      + id                 = (known after apply)
+      + name               = "production-cluster"
+      + tags               = {
+          + "Environment" = "production"
+          + "Name"        = "production-cluster"
+        }
+      + tags_all           = {
+          + "Application" = "cloud-app"
+          + "Environment" = "production"
+          + "Name"        = "production-cluster"
+          + "Terraform"   = "true"
+        }
+
+      + default_capacity_provider_strategy (known after apply)
+
+      + setting (known after apply)
+    }
+
+  # aws_ecs_service.app will be created
+  + resource "aws_ecs_service" "app" {
+      + cluster                            = (known after apply)
+      + deployment_maximum_percent         = 200
+      + deployment_minimum_healthy_percent = 100
+      + desired_count                      = 1
+      + enable_ecs_managed_tags            = false
+      + enable_execute_command             = false
+      + iam_role                           = (known after apply)
+      + id                                 = (known after apply)
+      + launch_type                        = "FARGATE"
+      + name                               = "production-service"
+      + platform_version                   = (known after apply)
+      + scheduling_strategy                = "REPLICA"
+      + tags                               = {
+          + "Environment" = "production"
+          + "Name"        = "production-service"
+        }
+      + tags_all                           = {
+          + "Application" = "cloud-app"
+          + "Environment" = "production"
+          + "Name"        = "production-service"
+          + "Terraform"   = "true"
+        }
+      + task_definition                    = (known after apply)
+      + triggers                           = (known after apply)
+      + wait_for_steady_state              = false
+
+      + load_balancer {
+          + container_name   = "cloud-app-dev"
+          + container_port   = 5000
+          + target_group_arn = (known after apply)
+            # (1 unchanged attribute hidden)
+        }
+
+      + network_configuration {
+          + assign_public_ip = false
+          + security_groups  = (known after apply)
+          + subnets          = [
+              + "subnet-0216d0a8ea454e8e1",
+              + "subnet-08191ae13a4459fef",
+            ]
+        }
+    }
+
+  # aws_ecs_task_definition.app will be created
+  + resource "aws_ecs_task_definition" "app" {
+      + arn                      = (known after apply)
+      + arn_without_revision     = (known after apply)
+      + container_definitions    = jsonencode(
+            [
+              + {
+                  + essential        = true
+                  + image            = "321225686735.dkr.ecr.ap-southeast-1.amazonaws.com/cloud-app-dev:latest"
+                  + logConfiguration = {
+                      + logDriver = "awslogs"
+                      + options   = {
+                          + awslogs-group         = "/ecs/production"
+                          + awslogs-region        = "us-west-2"
+                          + awslogs-stream-prefix = "ecs"
+                        }
+                    }
+                  + name             = "cloud-app-dev"
+                  + portMappings     = [
+                      + {
+                          + containerPort = 5000
+                          + hostPort      = 5000
+                        },
+                    ]
+                },
+            ]
+        )
+      + cpu                      = "256"
+      + execution_role_arn       = (known after apply)
+      + family                   = "production"
+      + id                       = (known after apply)
+      + memory                   = "512"
+      + network_mode             = "awsvpc"
+      + requires_compatibilities = [
+          + "FARGATE",
+        ]
+      + revision                 = (known after apply)
+      + skip_destroy             = false
+      + tags                     = {
+          + "Environment" = "production"
+          + "Name"        = "production"
+        }
+      + tags_all                 = {
+          + "Application" = "cloud-app"
+          + "Environment" = "production"
+          + "Name"        = "production"
+          + "Terraform"   = "true"
+        }
+      + task_role_arn            = (known after apply)
+    }
+
+  # aws_iam_role.task_execution_role will be created
+  + resource "aws_iam_role" "task_execution_role" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "ecs-tasks.amazonaws.com"
+                        }
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "production-execution-role"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + role_last_used        = (known after apply)
+      + tags_all              = {
+          + "Application" = "cloud-app"
+          + "Environment" = "production"
+          + "Terraform"   = "true"
+        }
+      + unique_id             = (known after apply)
+
+      + inline_policy (known after apply)
+    }
+
+  # aws_iam_role.task_role will be created
+  + resource "aws_iam_role" "task_role" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "ecs-tasks.amazonaws.com"
+                        }
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "production-task-role"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + role_last_used        = (known after apply)
+      + tags_all              = {
+          + "Application" = "cloud-app"
+          + "Environment" = "production"
+          + "Terraform"   = "true"
+        }
+      + unique_id             = (known after apply)
+
+      + inline_policy (known after apply)
+    }
+
+  # aws_iam_role_policy_attachment.task_execution_role_policy will be created
+  + resource "aws_iam_role_policy_attachment" "task_execution_role_policy" {
+      + id         = (known after apply)
+      + policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+      + role       = "production-execution-role"
+    }
+
+  # aws_lb.main will be created
+  + resource "aws_lb" "main" {
+      + arn                                         = (known after apply)
+      + arn_suffix                                  = (known after apply)
+      + desync_mitigation_mode                      = "defensive"
+      + dns_name                                    = (known after apply)
+      + drop_invalid_header_fields                  = false
+      + enable_deletion_protection                  = false
+      + enable_http2                                = true
+      + enable_tls_version_and_cipher_suite_headers = false
+      + enable_waf_fail_open                        = false
+      + enable_xff_client_port                      = false
+      + id                                          = (known after apply)
+      + idle_timeout                                = 60
+      + internal                                    = false
+      + ip_address_type                             = (known after apply)
+      + load_balancer_type                          = "application"
+      + name                                        = "production-alb"
+      + preserve_host_header                        = false
+      + security_groups                             = (known after apply)
+      + subnets                                     = [
+          + "subnet-05d8bc5f438168bb",
+          + "subnet-0f6bbe72a0c10086",
+        ]
+      + tags                                        = {
+          + "Environment" = "production"
+          + "Name"        = "production-alb"
+        }
+      + tags_all                                    = {
+          + "Application" = "cloud-app"
+          + "Environment" = "production"
+          + "Name"        = "production-alb"
+          + "Terraform"   = "true"
+        }
+      + vpc_id                                      = (known after apply)
+      + xff_header_processing_mode                  = "append"
+      + zone_id                                     = (known after apply)
+
+      + subnet_mapping (known after apply)
+    }
+
+  # aws_lb_listener.http will be created
+  + resource "aws_lb_listener" "http" {
+      + arn               = (known after apply)
+      + id                = (known after apply)
+      + load_balancer_arn = (known after apply)
+      + port              = 80
+      + protocol          = "HTTP"
+      + ssl_policy        = (known after apply)
+      + tags_all          = {
+          + "Application" = "cloud-app"
+          + "Environment" = "production"
+          + "Terraform"   = "true"
+        }
+
+      + default_action {
+          + order            = (known after apply)
+          + target_group_arn = (known after apply)
+          + type             = "forward"
+        }
+    }
+
+  # aws_lb_target_group.app will be created
+  + resource "aws_lb_target_group" "app" {
+      + arn                                = (known after apply)
+      + arn_suffix                         = (known after apply)
+      + connection_termination             = false
+      + deregistration_delay               = "300"
+      + id                                 = (known after apply)
+      + ip_address_type                    = (known after apply)
+      + lambda_multi_value_headers_enabled = false
+      + load_balancing_algorithm_type      = (known after apply)
+      + load_balancing_cross_zone_enabled  = (known after apply)
+      + name                               = "production-tg"
+      + port                               = 80
+      + preserve_client_ip                 = (known after apply)
+      + protocol                           = "HTTP"
+      + protocol_version                   = (known after apply)
+      + proxy_protocol_v2                  = false
+      + slow_start                         = 0
+      + tags                               = {
+          + "Environment" = "production"
+          + "Name"        = "production-tg"
+        }
+      + tags_all                           = {
+          + "Application" = "cloud-app"
+          + "Environment" = "production"
+          + "Name"        = "production-tg"
+          + "Terraform"   = "true"
+        }
+      + target_type                        = "ip"
+      + vpc_id                             = "vpc-09c0d727bbe0be07c"
+
+      + health_check {
+          + enabled             = true
+          + healthy_threshold   = 3
+          + interval            = 30
+          + matcher             = "200"
+          + path                = "/"
+          + port                = "traffic-port"
+          + protocol            = "HTTP"
+          + timeout             = 3
+          + unhealthy_threshold = 2
+        }
+
+      + stickiness (known after apply)
+
+      + target_failover (known after apply)
+    }
+
+  # aws_security_group.alb will be created
+  + resource "aws_security_group" "alb" {
+      + arn                    = (known after apply)
+      + description            = "Controls access to the ALB"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + from_port        = 80
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 80
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + name                   = "production-alb-sg"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Environment" = "production"
+          + "Name"        = "production-alb-sg"
+        }
+      + tags_all               = {
+          + "Application" = "cloud-app"
+          + "Environment" = "production"
+          + "Name"        = "production-alb-sg"
+          + "Terraform"   = "true"
+        }
+      + vpc_id                 = "vpc-09c0d727bbe0be07c"
+    }
+
+  # aws_security_group.ecs_tasks will be created
+  + resource "aws_security_group" "ecs_tasks" {
+      + arn                    = (known after apply)
+      + description            = "Allow inbound access from the ALB only"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = []
+              + from_port        = 5000
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = (known after apply)
+              + self             = false
+              + to_port          = 5000
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + name                   = "production-ecs-tasks-sg"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Environment" = "production"
+          + "Name"        = "production-ecs-tasks-sg"
+        }
+      + tags_all               = {
+          + "Application" = "cloud-app"
+          + "Environment" = "production"
+          + "Name"        = "production-ecs-tasks-sg"
+          + "Terraform"   = "true"
+        }
+      + vpc_id                 = "vpc-09c0d727bbe0be07c"
+    }
+
+  # module.ecr.aws_ecr_repository.app will be destroyed
+  # (because aws_ecr_repository.app is not in configuration)
+  - resource "aws_ecr_repository" "app" {
+      - arn                  = "arn:aws:ecr:us-west-2:321225686735:repository/cloud-app-dev" -> null
+      - id                   = "cloud-app-dev" -> null
+      - image_tag_mutability = "MUTABLE" -> null
+      - name                 = "cloud-app-dev" -> null
+      - registry_id          = "321225686735" -> null
+      - repository_url       = "321225686735.dkr.ecr.us-west-2.amazonaws.com/cloud-app-dev" -> null
+      - tags                 = {
+          - "Environment" = "dev"
+          - "Name"        = "cloud-app-dev-ecr"
+        } -> null
+      - tags_all             = {
+          - "Application" = "cloud-app"
+          - "Environment" = "dev"
+          - "Name"        = "cloud-app-dev-ecr"
+          - "Terraform"   = "true"
+        } -> null
+
+      - encryption_configuration {
+          - encryption_type = "AES256" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - image_scanning_configuration {
+          - scan_on_push = true -> null
+        }
+    }
+
+Plan: 12 to add, 0 to change, 1 to destroy.
+
+Changes to Outputs:
+  - alb_dns_name        = "cloud-app-dev-alb-339600556.us-west-2.elb.amazonaws.com" -> null
+  + alb_hostname        = (known after apply)
+  - app_url             = "http://cloud-app-dev-alb-339600556.us-west-2.elb.amazonaws.com" -> null
+  ~ cluster_name        = "cloud-app-dev-cluster" -> "production-cluster"
+  - private_subnet_ids  = [
+      - "subnet-02fc8ae5a286d86eb",
+      - "subnet-0aebef85407799d94",
+    ] -> null
+  - public_subnet_ids   = [
+      - "subnet-00ce3ca1d2f9e7a94",
+      - "subnet-0953192e34b77e11f",
+    ] -> null
+  - repository_name     = "cloud-app-dev" -> null
+  - repository_url      = "321225686735.dkr.ecr.us-west-2.amazonaws.com/cloud-app-dev" -> null
+  ~ service_name        = "cloud-app-dev-service" -> "production-service"
+  ~ task_definition_arn = "arn:aws:ecs:us-west-2:321225686735:task-definition/cloud-app-dev:1" -> (known after apply)
+  - vpc_id              = "vpc-0a0ff425cfdd05199" -> null
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value:
+
+

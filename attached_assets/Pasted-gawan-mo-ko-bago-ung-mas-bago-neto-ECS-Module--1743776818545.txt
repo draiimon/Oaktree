@@ -1,0 +1,202 @@
+gawan mo ko bago! ung mas bago neto : 
+###################################
+# ECS Module
+###################################
+
+# Variables
+variable "project_name" {
+  description = "Name of the project"
+  type        = string
+}
+
+variable "environment" {
+  description = "Deployment environment"
+  type        = string
+}
+
+variable "app_port" {
+  description = "Port exposed by the docker container"
+  type        = number
+}
+
+variable "app_count" {
+  description = "Number of docker containers to run"
+  type        = number
+}
+
+variable "cpu" {
+  description = "Fargate instance CPU units to provision (1 vCPU = 1024 CPU units)"
+  type        = number
+}
+
+variable "memory" {
+  description = "Fargate instance memory to provision (in MiB)"
+  type        = number
+}
+
+variable "desired_count" {
+  description = "Desired number of tasks"
+  type        = number
+}
+
+variable "max_capacity" {
+  description = "Maximum number of tasks for autoscaling"
+  type        = number
+}
+
+variable "health_check_path" {
+  description = "Path for health check"
+  type        = string
+}
+
+variable "ecr_repository_url" {
+  description = "URL of the ECR repository"
+  type        = string
+}
+
+variable "container_name" {
+  description = "Name of the container"
+  type        = string
+}
+  type        = list(string)
+}
+
+variable "private_subnet_ids" {
+  description = "IDs of the private subnets"
+  type        = list(string)
+}
+
+# Resources
+# Security Group for ALB
+resource "aws_security_group" "alb" {
+  name        = "${var.environment}-alb-sg"
+  description = "Controls access to the ALB"
+  vpc_id      = var.vpc_id
+
+  ingress {
+    protocol    = "tcp"
+    from_port   = 80
+    to_port     = 80
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name        = "${var.environment}-alb-sg"
+    Environment = var.environment
+  }
+}
+
+# Security Group for ECS Tasks
+resource "aws_security_group" "ecs_tasks" {
+  name        = "${var.environment}-ecs-tasks-sg"
+  description = "Allow inbound access from the ALB only"
+  vpc_id      = var.vpc_id
+
+  ingress {
+    protocol        = "tcp"
+    from_port       = var.app_port
+    to_port         = var.app_port
+    security_groups = [aws_security_group.alb.id]
+  }
+
+  egress {
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name        = "${var.environment}-ecs-tasks-sg"
+    Environment = var.environment
+  }
+# IAM Role for ECS Task Execution
+resource "aws_iam_role" "task_execution_role" {
+  name = "${var.environment}-execution-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "ecs-tasks.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
+# Attach the ECS Task Execution Role Policy
+resource "aws_iam_role_policy_attachment" "task_execution_role_policy" {
+  role       = aws_iam_role.task_execution_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+}
+
+# IAM Role for ECS Task
+resource "aws_iam_role" "task_role" {
+  name = "${var.environment}-task-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+
+# IAM Role for ECS Task Execution
+resource "aws_iam_role" "task_execution_role" {
+  name = "${var.environment}-execution-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "ecs-tasks.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
+# Attach the ECS Task Execution Role Policy
+resource "aws_iam_role_policy_attachment" "task_execution_role_policy" {
+  role       = aws_iam_role.task_execution_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+}
+
+# IAM Role for ECS Task
+resource "aws_iam_role" "task_role" {
+  name = "${var.environment}-task-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "ecs-tasks.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
+# CloudWatch Log Group
+resource "aws_cloudwatch_log_group" "app_logs" {
+  name              = "/ecs/${var.environment}"
+  retention_in_days = 30
+
+  tags = {

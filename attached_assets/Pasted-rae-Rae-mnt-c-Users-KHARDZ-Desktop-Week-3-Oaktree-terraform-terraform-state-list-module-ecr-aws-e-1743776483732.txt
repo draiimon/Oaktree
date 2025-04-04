@@ -1,0 +1,50 @@
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform state list
+module.ecr.aws_ecr_lifecycle_policy.app
+module.ecr.aws_ecr_repository.app
+module.ecs.data.aws_region.current
+module.ecs.aws_cloudwatch_log_group.app_logs
+module.ecs.aws_ecs_cluster.main
+module.ecs.aws_ecs_service.app
+module.ecs.aws_ecs_task_definition.app
+module.ecs.aws_iam_role.task_execution_role
+module.ecs.aws_iam_role.task_role
+module.ecs.aws_iam_role_policy_attachment.task_execution_role_policy
+module.ecs.aws_lb.main
+module.ecs.aws_lb_listener.http
+module.ecs.aws_lb_target_group.app
+module.ecs.aws_security_group.alb
+module.ecs.aws_security_group.ecs_tasks
+module.networking.aws_eip.nat[0]
+module.networking.aws_eip.nat[1]
+module.networking.aws_internet_gateway.main
+module.networking.aws_nat_gateway.main[0]
+module.networking.aws_nat_gateway.main[1]
+module.networking.aws_route_table.private[0]
+module.networking.aws_route_table.private[1]
+module.networking.aws_route_table.public
+module.networking.aws_route_table_association.private[0]
+module.networking.aws_route_table_association.private[1]
+module.networking.aws_route_table_association.public[0]
+module.networking.aws_route_table_association.public[1]
+module.networking.aws_subnet.private[0]
+module.networking.aws_subnet.private[1]
+module.networking.aws_subnet.public[0]
+module.networking.aws_subnet.public[1]
+module.networking.aws_vpc.main
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform state rm module.ecs
+rraform state rm module.networking
+Removed module.ecs.data.aws_region.current
+Removed module.ecs.aws_cloudwatch_log_group.app_logs
+Removed module.ecs.aws_ecs_cluster.main
+Removed module.ecs.aws_ecs_service.app
+Removed module.ecs.aws_ecs_task_definition.app
+Removed module.ecs.aws_iam_role.task_execution_role
+Removed module.ecs.aws_iam_role.task_role
+Removed module.ecs.aws_iam_role_policy_attachment.task_execution_role_policy
+Removed module.ecs.aws_lb.main
+Removed module.ecs.aws_lb_listener.http
+Removed module.ecs.aws_lb_target_group.app
+Removed module.ecs.aws_security_group.alb
+Removed module.ecs.aws_security_group.ecs_tasks
+
+

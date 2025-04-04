@@ -1,0 +1,99 @@
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform applyterraform init -upgrade
+Terraform has no command named "applyterraform".
+
+To see all of Terraform's top-level commands, run:
+  terraform -help
+
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform apply
+
+
+╷
+│ Error: Reference to undeclared input variable
+│
+│   on providers.tf line 13, in provider "aws":
+│   13:   region = var.aws_region
+│
+│ An input variable with the name "aws_region" has not been declared. This variable can be declared with a variable
+│ "aws_region" {} block.
+╵
+╷
+│ Error: Reference to undeclared input variable
+│
+│   on providers.tf line 16, in provider "aws":
+│   16:     tags = var.tags
+│
+│ An input variable with the name "tags" has not been declared. This variable can be declared with a variable "tags"
+│ {} block.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ nano terraform.tfvars
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform apply
+Acquiring state lock. This may take a few moments...
+var.cpu
+  Fargate instance CPU units to provision (1 vCPU = 1024 CPU units)
+
+  Enter a value: 256
+
+var.max_capacity
+  Maximum number of tasks for autoscaling
+
+  Enter a value: 2
+
+var.memory
+  Fargate instance memory to provision (in MiB)
+
+  Enter a value: 512
+
+
+╷
+│ Warning: Value for undeclared variable
+│
+│ The root module does not declare a variable named "aws_region" but a value was found in file "terraform.tfvars".
+│ If you meant to use this value, add a "variable" block to the configuration.
+│
+│ To silence these warnings, use TF_VAR_... environment variables to provide certain "global" settings to all
+│ configurations in your organization. To reduce the verbosity of these warnings, use the -compact-warnings option.
+╵
+╷
+│ Warning: Value for undeclared variable
+│
+│ The root module does not declare a variable named "fargate_memory" but a value was found in file
+│ "terraform.tfvars". If you meant to use this value, add a "variable" block to the configuration.
+│
+│ To silence these warnings, use TF_VAR_... environment variables to provide certain "global" settings to all
+│ configurations in your organization. To reduce the verbosity of these warnings, use the -compact-warnings option.
+╵
+╷
+│ Warning: Values for undeclared variables
+│
+│ In addition to the other similar warnings shown, 3 other variable(s) defined without being declared.
+╵
+╷
+│ Error: Reference to undeclared input variable
+│
+│   on providers.tf line 13, in provider "aws":
+│   13:   region = var.aws_region
+│
+│ An input variable with the name "aws_region" has not been declared. This variable can be declared with a variable
+│ "aws_region" {} block.
+╵
+╷
+│ Error: Reference to undeclared input variable
+│
+│   on providers.tf line 16, in provider "aws":
+│   16:     tags = var.tags
+│
+│ An input variable with the name "tags" has not been declared. This variable can be declared with a variable "tags"
+│ {} block.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$

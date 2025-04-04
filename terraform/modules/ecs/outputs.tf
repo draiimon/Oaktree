@@ -1,57 +1,19 @@
-# Outputs for ECS Module
-# Week 3: Cloud Infrastructure Project
-
-output "cluster_id" {
-  description = "The ID of the ECS cluster"
-  value       = aws_ecs_cluster.app.id
+output "alb_hostname" {
+  value       = aws_lb.main.dns_name
+  description = "ALB DNS name"
 }
 
-output "cluster_name" {
-  description = "The name of the ECS cluster"
-  value       = aws_ecs_cluster.app.name
+output "ecs_cluster_name" {
+  value       = aws_ecs_cluster.main.name
+  description = "Name of the ECS cluster"
 }
 
-output "service_id" {
-  description = "The ID of the ECS service"
-  value       = aws_ecs_service.app.id
-}
-
-output "service_name" {
-  description = "The name of the ECS service"
+output "ecs_service_name" {
   value       = aws_ecs_service.app.name
+  description = "Name of the ECS service"
 }
 
-output "task_definition_arn" {
-  description = "The ARN of the task definition"
-  value       = aws_ecs_task_definition.app.arn
-}
-
-output "load_balancer_dns" {
-  description = "The DNS name of the load balancer"
-  value       = aws_lb.app.dns_name
-}
-
-output "load_balancer_arn" {
-  description = "The ARN of the load balancer"
-  value       = aws_lb.app.arn
-}
-
-output "target_group_arn" {
-  description = "The ARN of the target group"
-  value       = aws_lb_target_group.app.arn
-}
-
-output "cloudwatch_log_group" {
-  description = "CloudWatch log group for the application"
-  value       = aws_cloudwatch_log_group.app.name
-}
-
-output "security_group_ecs" {
-  description = "Security group for ECS tasks"
-  value       = aws_security_group.ecs_tasks.id
-}
-
-output "security_group_lb" {
-  description = "Security group for the load balancer"
-  value       = aws_security_group.lb.id
+output "cloudwatch_log_group_name" {
+  value       = aws_cloudwatch_log_group.app_logs.name
+  description = "Name of the CloudWatch Log Group"
 }

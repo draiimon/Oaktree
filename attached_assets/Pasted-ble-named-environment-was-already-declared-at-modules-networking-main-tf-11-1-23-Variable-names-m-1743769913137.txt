@@ -1,0 +1,88 @@
+ble named "environment" was already declared at modules/networking/main.tf:11,1-23. Variable names must be
+│ unique within a module.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform apply tfplan
+╷
+│ Error: Failed to load "tfplan" as a plan file
+│
+│ Error: stat tfplan: no such file or directory
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ cd /mnt/c/Users/KHARDZ/Desktop/Week\ 3/Oaktree/terraform
+irst, back up your current files
+mkdir -p backup
+cp -r modules backup/
+
+# Now, let's fix the ECR mrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # First, back up your current files
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ mkdir -p backup
+odule
+egrep -n "variable|output" modules/ecr/main.tfrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ cp -r modules backup/
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Now, let's fix the ECR module
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ egrep -n "variable|output" modules/ecr/main.tf# Remove the separate variables and outputs files
+cr/variables.tf modules/ecr/outputs.tf
+rm modules/ecs/variables.tf modules/ecs/outputs.tf
+rm modules/networking/variables.tf modules/networking/outputs.tfgrep: modules/ecr/main.tf#: No such file or directory
+grep: Remove: No such file or directory
+grep: the: No such file or directory
+grep: separate: No such file or directory
+grep: variables: No such file or directory
+grep: and: No such file or directory
+grep: outputs: No such file or directory
+grep: files: No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecr/variables.tf modules/ecr/outputs.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecs/variables.tf modules/ecs/outputs.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/networking/variables.tf modules/networking/outputs.tf# Remove the separate variables and outputs files
+odules/ecr/variables.tf modules/ecr/outputs.tf
+rm modules/ecs/variables.tf modules/ecs/outputs.tf
+rm modules/networking/variables.tf modules/networking/outputs.tfrm: cannot remove 'modules/networking/outputs.tf#': No such file or directory
+rm: cannot remove 'Remove': No such file or directory
+rm: cannot remove 'the': No such file or directory
+rm: cannot remove 'separate': No such file or directory
+rm: cannot remove 'variables': No such file or directory
+rm: cannot remove 'and': No such file or directory
+rm: cannot remove 'outputs': No such file or directory
+rm: cannot remove 'files': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecr/variables.tf modules/ecr/outputs.tf
+rm: cannot remove 'modules/ecr/variables.tf': No such file or directory
+rm: cannot remove 'modules/ecr/outputs.tf': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecs/variables.tf modules/ecs/outputs.tf
+rm: cannot remove 'modules/ecs/variables.tf': No such file or directory
+rm: cannot remove 'modules/ecs/outputs.tf': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/networking/variables.tf modules/networking/outputs.tfterraform init
+rm: cannot remove 'modules/networking/variables.tf': No such file or directory
+rm: cannot remove 'modules/networking/outputs.tfterraform': No such file or directory
+rm: cannot remove 'init': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform init
+Initializing the backend...
+Initializing modules...
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/networking/outputs.tf line 4:
+│    4: output "vpc_id" {
+│
+│ An output named "vpc_id" was already defined at modules/networking/main.tf:158,1-16. Output names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/networking/outputs.tf line 9:
+│    9: output "public_subnet_ids" {
+│
+│ An output named "public_subnet_ids" was already defined at modules/networking/main.tf:163,1-27. Output names must
+│ be unique within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/networking/outputs.tf line 14:
+│   14: output "private_subnet_ids" {
+│
+│ An output named "private_subnet_ids" was already defined at modules/networking/main.tf:168,1-28. Output names must
+│ be unique within a module.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+
+

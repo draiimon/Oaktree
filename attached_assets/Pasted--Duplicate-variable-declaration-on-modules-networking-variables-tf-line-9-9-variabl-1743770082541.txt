@@ -1,0 +1,247 @@
+: Duplicate variable declaration
+│
+│   on modules/networking/variables.tf line 9:
+│    9: variable "public_subnet_cidrs" {
+│
+│ A variable named "public_subnet_cidrs" was already declared at modules/networking/main.tf:21,1-31. Variable names
+│ must be unique within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/networking/variables.tf line 14:
+│   14: variable "private_subnet_cidrs" {
+│
+│ A variable named "private_subnet_cidrs" was already declared at modules/networking/main.tf:26,1-32. Variable names
+│ must be unique within a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on modules/networking/variables.tf line 24:
+│   24: variable "environment" {
+│
+│ A variable named "environment" was already declared at modules/networking/main.tf:11,1-23. Variable names must be
+│ unique within a module.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform apply tfplan
+╷
+│ Error: Failed to load "tfplan" as a plan file
+│
+│ Error: stat tfplan: no such file or directory
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ cd /mnt/c/Users/KHARDZ/Desktop/Week\ 3/Oaktree/terraform
+irst, back up your current files
+mkdir -p backup
+cp -r modules backup/
+
+# Now, let's fix the ECR mrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # First, back up your current files
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ mkdir -p backup
+odule
+egrep -n "variable|output" modules/ecr/main.tfrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ cp -r modules backup/
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Now, let's fix the ECR module
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ egrep -n "variable|output" modules/ecr/main.tf# Remove the separate variables and outputs files
+cr/variables.tf modules/ecr/outputs.tf
+rm modules/ecs/variables.tf modules/ecs/outputs.tf
+rm modules/networking/variables.tf modules/networking/outputs.tfgrep: modules/ecr/main.tf#: No such file or directory
+grep: Remove: No such file or directory
+grep: the: No such file or directory
+grep: separate: No such file or directory
+grep: variables: No such file or directory
+grep: and: No such file or directory
+grep: outputs: No such file or directory
+grep: files: No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecr/variables.tf modules/ecr/outputs.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecs/variables.tf modules/ecs/outputs.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/networking/variables.tf modules/networking/outputs.tf# Remove the separate variables and outputs files
+odules/ecr/variables.tf modules/ecr/outputs.tf
+rm modules/ecs/variables.tf modules/ecs/outputs.tf
+rm modules/networking/variables.tf modules/networking/outputs.tfrm: cannot remove 'modules/networking/outputs.tf#': No such file or directory
+rm: cannot remove 'Remove': No such file or directory
+rm: cannot remove 'the': No such file or directory
+rm: cannot remove 'separate': No such file or directory
+rm: cannot remove 'variables': No such file or directory
+rm: cannot remove 'and': No such file or directory
+rm: cannot remove 'outputs': No such file or directory
+rm: cannot remove 'files': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecr/variables.tf modules/ecr/outputs.tf
+rm: cannot remove 'modules/ecr/variables.tf': No such file or directory
+rm: cannot remove 'modules/ecr/outputs.tf': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecs/variables.tf modules/ecs/outputs.tf
+rm: cannot remove 'modules/ecs/variables.tf': No such file or directory
+rm: cannot remove 'modules/ecs/outputs.tf': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/networking/variables.tf modules/networking/outputs.tfterraform init
+rm: cannot remove 'modules/networking/variables.tf': No such file or directory
+rm: cannot remove 'modules/networking/outputs.tfterraform': No such file or directory
+rm: cannot remove 'init': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform init
+Initializing the backend...
+Initializing modules...
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/networking/outputs.tf line 4:
+│    4: output "vpc_id" {
+│
+│ An output named "vpc_id" was already defined at modules/networking/main.tf:158,1-16. Output names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/networking/outputs.tf line 9:
+│    9: output "public_subnet_ids" {
+│
+│ An output named "public_subnet_ids" was already defined at modules/networking/main.tf:163,1-27. Output names must
+│ be unique within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/networking/outputs.tf line 14:
+│   14: output "private_subnet_ids" {
+│
+│ An output named "private_subnet_ids" was already defined at modules/networking/main.tf:168,1-28. Output names must
+│ be unique within a module.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform plan -out=tfplan
+
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/networking/outputs.tf line 4:
+│    4: output "vpc_id" {
+│
+│ An output named "vpc_id" was already defined at modules/networking/main.tf:158,1-16. Output names must be unique
+│ within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/networking/outputs.tf line 9:
+│    9: output "public_subnet_ids" {
+│
+│ An output named "public_subnet_ids" was already defined at modules/networking/main.tf:163,1-27. Output names must
+│ be unique within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on modules/networking/outputs.tf line 14:
+│   14: output "private_subnet_ids" {
+│
+│ An output named "private_subnet_ids" was already defined at modules/networking/main.tf:168,1-28. Output names must
+│ be unique within a module.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform apply tfplan
+╷
+│ Error: Failed to load "tfplan" as a plan file
+│
+│ Error: stat tfplan: no such file or directory
+╵
+
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/networking/outputs.tf
+les/networking/variables.tf
+rm modules/ecr/outputs.tf
+rm modules/ecr/variables.tf
+rm modules/ecs/outputs.tf
+rm modules/ecs/variables.tfrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/networking/variables.tf
+rm: cannot remove 'modules/networking/variables.tf': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecr/outputs.tf
+rm: cannot remove 'modules/ecr/outputs.tf': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecr/variables.tf
+rm: cannot remove 'modules/ecr/variables.tf': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecs/outputs.tf
+rm: cannot remove 'modules/ecs/outputs.tf': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecs/variables.tfterraform init
+rm: cannot remove 'modules/ecs/variables.tfterraform': No such file or directory
+rm: cannot remove 'init': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform init
+Initializing the backend...
+Initializing modules...
+Initializing provider plugins...
+- Finding hashicorp/aws versions matching "~> 4.0"...
+- Installing hashicorp/aws v4.67.0...
+# Check if files were actually removed
+ls -la modules/networking/
+ls -la modules/ecr/
+ls -la modules/ecs/# Check if files were actually removed
+ls -la modules/networking/
+ls -la modules/ecr/
+ls -la modules/ecs/
+- Installed hashicorp/aws v4.67.0 (signed by HashiCorp)
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Check if files were actually removed
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ ls -la modules/networking/
+total 8
+drwxrwxrwx 1 rae rae 4096 Apr  4 20:32 .
+drwxrwxrwx 1 rae rae 4096 Apr  4 19:54 ..
+-rwxrwxrwx 1 rae rae 4357 Apr  4 19:54 main.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ ls -la modules/ecr/
+total 4
+drwxrwxrwx 1 rae rae 4096 Apr  4 20:31 .
+drwxrwxrwx 1 rae rae 4096 Apr  4 19:54 ..
+-rwxrwxrwx 1 rae rae 1293 Apr  4 19:54 main.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ ls -la modules/ecs/# Check if files were actually removed
+ls: cannot access 'modules/ecs/#': No such file or directory
+ls: cannot access 'Check': No such file or directory
+ls: cannot access 'if': No such file or directory
+ls: cannot access 'files': No such file or directory
+ls: cannot access 'were': No such file or directory
+ls: cannot access 'actually': No such file or directory
+ls: cannot access 'removed': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ ls -la modules/networking/
+total 8
+drwxrwxrwx 1 rae rae 4096 Apr  4 20:32 .
+drwxrwxrwx 1 rae rae 4096 Apr  4 19:54 ..
+-rwxrwxrwx 1 rae rae 4357 Apr  4 19:54 main.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ ls -la modules/ecr/
+total 4
+drwxrwxrwx 1 rae rae 4096 Apr  4 20:31 .
+drwxrwxrwx 1 rae rae 4096 Apr  4 19:54 ..
+-rwxrwxrwx 1 rae rae 1293 Apr  4 19:54 main.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ ls -la modules/ecs/
+total 12
+drwxrwxrwx 1 rae rae  4096 Apr  4 20:31 .
+drwxrwxrwx 1 rae rae  4096 Apr  4 19:54 ..
+-rwxrwxrwx 1 rae rae 10951 Apr  4 19:54 main.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/networking/outputs.tf
+les/networking/variables.tf
+rm modules/ecr/outputs.tf
+rm modules/ecr/variables.tf
+rm modules/ecs/outputs.tf
+rm modules/ecs/variables.tfrm: cannot remove 'modules/networking/outputs.tf': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/networking/variables.tf
+rm: cannot remove 'modules/networking/variables.tf': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecr/outputs.tf
+rm: cannot remove 'modules/ecr/outputs.tf': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecr/variables.tf
+rm: cannot remove 'modules/ecr/variables.tf': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecs/outputs.tf
+rm: cannot remove 'modules/ecs/outputs.tf': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ rm modules/ecs/variables.tf
+rm: cannot remove 'modules/ecs/variables.tf': No such file or directory
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform init
+Initializing the backend...
+
+
+
+
+

@@ -1,0 +1,212 @@
+│
+│ An argument named "memory_target_value" is not expected here.
+╵
+╷
+│ Error: Unsupported argument
+│
+│   on main.tf line 45, in module "ecs":
+│   45:   public_subnets        = module.networking.public_subnet_ids
+│
+│ An argument named "public_subnets" is not expected here.
+╵
+╷
+│ Error: Unsupported argument
+│
+│   on main.tf line 46, in module "ecs":
+│   46:   private_subnets       = module.networking.private_subnet_ids
+│
+│ An argument named "private_subnets" is not expected here.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ nano main.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Backup your current main.tf
+cp main.rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ cp main.tf main.tf.backup
+reate a new updated main.tf
+nano main.tfrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Create a new updated main.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ nano main.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ y
+y: command not found
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform plan
+╷
+│ Error: Unclosed configuration block
+│
+│   on main.tf line 97, in output "vpc_id":
+│   97: output "vpc_id" {
+│
+│ There is no closing brace for this block before the end of the file. This may be caused by incorrect brace nesting
+│ elsewhere in this file.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on outputs.tf line 1:
+│    1: output "vpc_id" {
+│
+│ An output named "vpc_id" was already defined at main.tf:97,1-16. Output names must be unique within a module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on outputs.tf line 16:
+│   16: output "repository_url" {
+│
+│ An output named "repository_url" was already defined at main.tf:67,1-24. Output names must be unique within a
+│ module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on outputs.tf line 21:
+│   21: output "repository_name" {
+│
+│ An output named "repository_name" was already defined at main.tf:72,1-25. Output names must be unique within a
+│ module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on outputs.tf line 26:
+│   26: output "cluster_name" {
+│
+│ An output named "cluster_name" was already defined at main.tf:82,1-22. Output names must be unique within a
+│ module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on outputs.tf line 31:
+│   31: output "service_name" {
+│
+│ An output named "service_name" was already defined at main.tf:87,1-22. Output names must be unique within a
+│ module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on outputs.tf line 36:
+│   36: output "task_definition_arn" {
+│
+│ An output named "task_definition_arn" was already defined at main.tf:92,1-29. Output names must be unique within a
+│ module.
+╵
+╷
+│ Error: Duplicate provider configuration
+│
+│   on providers.tf line 12:
+│   12: provider "aws" {
+│
+│ A default (non-aliased) provider configuration for "aws" was already given at main.tf:3,1-15. If multiple
+│ configurations are required, set the "alias" argument for alternative configurations.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on variables.tf line 2:
+│    2: variable "aws_region" {
+│
+│ A variable named "aws_region" was already declared at main.tf:8,1-22. Variable names must be unique within a
+│ module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on variables.tf line 8:
+│    8: variable "environment" {
+│
+│ A variable named "environment" was already declared at main.tf:20,1-23. Variable names must be unique within a
+│ module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on variables.tf line 14:
+│   14: variable "project_name" {
+│
+│ A variable named "project_name" was already declared at main.tf:14,1-24. Variable names must be unique within a
+│ module.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Restore the original main.tf
+.tf.backrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ cp main.tf.backup main.tf
+ow edit just the ECS module section in main.tf
+nano main.tfrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Now edit just the ECS module section in main.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ nano main.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ # Backup and create a new main.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ cp main.tf main.tf.original
+nano main.tfrae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ nano main.tf
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ y
+y: command not found
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$ terraform plan
+╷
+│ Error: Duplicate output definition
+│
+│   on outputs.tf line 26:
+│   26: output "cluster_name" {
+│
+│ An output named "cluster_name" was already defined at main.tf:311,1-22. Output names must be unique within a
+│ module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on outputs.tf line 31:
+│   31: output "service_name" {
+│
+│ An output named "service_name" was already defined at main.tf:316,1-22. Output names must be unique within a
+│ module.
+╵
+╷
+│ Error: Duplicate output definition
+│
+│   on outputs.tf line 36:
+│   36: output "task_definition_arn" {
+│
+│ An output named "task_definition_arn" was already defined at main.tf:321,1-29. Output names must be unique within
+│ a module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on variables.tf line 8:
+│    8: variable "environment" {
+│
+│ A variable named "environment" was already declared at main.tf:11,1-23. Variable names must be unique within a
+│ module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on variables.tf line 14:
+│   14: variable "project_name" {
+│
+│ A variable named "project_name" was already declared at main.tf:6,1-24. Variable names must be unique within a
+│ module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on variables.tf line 53:
+│   53: variable "app_port" {
+│
+│ A variable named "app_port" was already declared at main.tf:16,1-20. Variable names must be unique within a
+│ module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on variables.tf line 59:
+│   59: variable "app_count" {
+│
+│ A variable named "app_count" was already declared at main.tf:21,1-21. Variable names must be unique within a
+│ module.
+╵
+╷
+│ Error: Duplicate variable declaration
+│
+│   on variables.tf line 77:
+│   77: variable "health_check_path" {
+│
+│ A variable named "health_check_path" was already declared at main.tf:46,1-29. Variable names must be unique within
+│ a module.
+╵
+rae@Rae:/mnt/c/Users/KHARDZ/Desktop/Week 3/Oaktree/terraform$

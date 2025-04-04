@@ -1,29 +1,61 @@
-# Variables for ECS Module
-# Week 3: Cloud Infrastructure Project
+variable "project_name" {
+  description = "Name of the project"
+  type        = string
+}
+
+variable "environment" {
+  description = "Deployment environment"
+  type        = string
+}
 
 variable "vpc_id" {
-  description = "The ID of the VPC"
+  description = "VPC ID"
   type        = string
 }
 
 variable "public_subnet_ids" {
-  description = "The IDs of the public subnets"
+  description = "IDs of the public subnets"
   type        = list(string)
 }
 
 variable "private_subnet_ids" {
-  description = "The IDs of the private subnets"
+  description = "IDs of the private subnets"
   type        = list(string)
 }
 
-variable "app_name" {
-  description = "Name of the application"
-  type        = string
+variable "app_port" {
+  description = "Port exposed by the docker container"
+  type        = number
 }
 
-variable "app_port" {
-  description = "Port that the application listens on"
+variable "app_count" {
+  description = "Number of docker containers to run"
   type        = number
+}
+
+variable "cpu" {
+  description = "Fargate instance CPU units to provision (1 vCPU = 1024 CPU units)"
+  type        = number
+}
+
+variable "memory" {
+  description = "Fargate instance memory to provision (in MiB)"
+  type        = number
+}
+
+variable "desired_count" {
+  description = "Desired number of tasks"
+  type        = number
+}
+
+variable "max_capacity" {
+  description = "Maximum number of tasks for autoscaling"
+  type        = number
+}
+
+variable "health_check_path" {
+  description = "Path for health check"
+  type        = string
 }
 
 variable "ecr_repository_url" {
@@ -31,31 +63,7 @@ variable "ecr_repository_url" {
   type        = string
 }
 
-variable "environment" {
-  description = "The deployment environment (dev, staging, prod)"
+variable "container_name" {
+  description = "Name of the container"
   type        = string
-}
-
-variable "cpu" {
-  description = "CPU units for the container (1024 = 1 vCPU)"
-  type        = number
-  default     = 512 # 0.5 vCPU
-}
-
-variable "memory" {
-  description = "Memory for the container in MB"
-  type        = number
-  default     = 1024 # 1 GB
-}
-
-variable "container_count" {
-  description = "Number of containers to run"
-  type        = number
-  default     = 2
-}
-
-variable "tags" {
-  description = "Tags to apply to resources"
-  type        = map(string)
-  default     = {}
 }
