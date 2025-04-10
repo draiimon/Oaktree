@@ -143,9 +143,10 @@ The platform provides comprehensive real-time monitoring:
 
 These files make the project compatible with local development environments:
 
-- **local-dev.js**: Modified server startup script for local environments
+- **local-dev.cjs**: Modified server startup script for local environments
+- **fix.cjs**: Automatic compatibility fix script for local environments
 - **vite.config.local.ts**: Compatible Vite configuration for local development
-- **local-setup.md**: Comprehensive guide for local setup
+- **LOCAL-SETUP.md**: Comprehensive guide for local setup
 
 ## 🌟 Deployment Options
 

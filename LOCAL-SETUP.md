@@ -62,12 +62,23 @@ Kung gusto mong magkaroon ng real AWS connectivity, update mo ang .env file na m
 
 ### 3. Setup Local Development Scripts
 
-Para sa mas madaling development process, i-add natin ang local scripts sa package.json:
+Para sa mas madaling development process, gumawa ako ng `local-scripts.sh` script na pwede mong gamitin:
 
 ```bash
-npm pkg set scripts.local:dev="node local-dev.cjs"
-npm pkg set scripts.local:build="vite --config vite.config.local.ts build"
-npm pkg set scripts.local:start="NODE_ENV=production node local-dev.cjs"
+# Gawin munang executable
+chmod +x local-scripts.sh
+
+# Run local dev server
+./local-scripts.sh dev
+
+# Build for production
+./local-scripts.sh build
+
+# Run in production mode
+./local-scripts.sh start
+
+# Fix common issues
+./local-scripts.sh fix
 ```
 
 ### 4. Run the Application
@@ -83,7 +94,7 @@ npm run dev
 #### Using Local-Compatible Scripts
 
 ```bash
-npm run local:dev
+./local-scripts.sh dev
 ```
 
 Kapag successful, makikita mo ang app sa http://localhost:5000
@@ -98,9 +109,9 @@ Kung hindi lumalabas ang UI, subukan ang isa sa mga sumusunod:
 
 ```bash
 # Build the frontend
-npm run local:build
+./local-scripts.sh build
 # Then start the server
-NODE_ENV=production npm run local:start
+./local-scripts.sh start
 ```
 
 #### Option 2: Run Vite separately
