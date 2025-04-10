@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 
-// Password to hash
+// Password to hash - you can change this if needed
 const password = 'Mason@0905';
 
 // Create a salt and hash the password
