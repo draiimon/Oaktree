@@ -20,7 +20,8 @@ cd Oaktree
 npm install
 
 # 3. Run the fix script para sa automatic setup
-node fix.cjs
+chmod +x local-scripts.sh
+./local-scripts.sh fix
 
 # 4. Start the application
 npm run dev
@@ -118,7 +119,7 @@ Kung hindi lumalabas ang UI, subukan ang isa sa mga sumusunod:
 
 ```bash
 # Sa window 1, patakbuhin ang backend
-node local-dev.cjs
+node server/start-local.cjs
 
 # Sa window 2, patakbuhin ang frontend
 npx vite --config vite.config.local.ts

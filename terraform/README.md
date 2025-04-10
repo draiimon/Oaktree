@@ -22,20 +22,21 @@ The Terraform configuration provisions the following AWS resources:
 
 ## Configuration
 
-The `terraform.tfvars` file is already configured with your specific AWS account details:
+You can customize the deployment by modifying the `terraform.tfvars` file with your specific AWS account details:
 
 ```hcl
-aws_region = "us-east-1"  # North Virginia region
-environment = "dev"       # Development environment
+aws_region  = "us-east-1"    # Your preferred AWS region
+environment = "dev"          # Environment name (dev, staging, prod)
 
-# Using real VPC and subnet IDs from your AWS account
-vpc_id     = "vpc-08c05f6fe25301574"  # dev-vpc
-subnet_ids = [
-  "subnet-0e73b48f3a4fdf622",  # dev-public-subnet-1
-  "subnet-0b61cb00a422a00c0"   # dev-public-subnet-2
-]
+# VPC Configuration
+vpc_cidr        = "10.0.0.0/16"  # CIDR block for the VPC
+public_subnets  = ["10.0.1.0/24", "10.0.2.0/24"]  # Public subnet CIDR blocks
+private_subnets = ["10.0.3.0/24", "10.0.4.0/24"]  # Private subnet CIDR blocks
 
-allowed_cidr_blocks = ["0.0.0.0/0"]  # Note: Restrict this in production
+# ECS Configuration
+container_memory = 512  # Container memory in MiB
+container_cpu    = 256  # Container CPU units
+desired_count    = 2    # Desired number of containers
 ```
 
 ## Usage
