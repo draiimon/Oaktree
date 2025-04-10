@@ -43,32 +43,18 @@ A comprehensive AWS cloud infrastructure management and deployment platform with
    node fix.cjs
    ```
 
-4. **Configure environment**
-   Create a `.env` file with:
-   ```
-   # Without AWS Account:
-   AWS_REGION=ap-southeast-1
-   AWS_ACCESS_KEY_ID=placeholder
-   AWS_SECRET_ACCESS_KEY=placeholder
-   USE_AWS_DB=false
-   
-   # With AWS Account (for real DynamoDB):
-   # AWS_REGION=ap-southeast-1
-   # AWS_ACCESS_KEY_ID=your_access_key_here
-   # AWS_SECRET_ACCESS_KEY=your_secret_key_here
-   # USE_AWS_DB=true
-   ```
-
-5. **Start the application**
+4. **Start the application**
    ```bash
    npm run dev
    ```
 
-6. **Access the dashboard**
+5. **Access the dashboard**
    - Open http://localhost:5000
    - Login with admin credentials:
      - Username: `msn_clx`
      - Password: `Mason@0905`
+
+> **Note**: For detailed local setup instructions, see the [LOCAL-SETUP.md](./LOCAL-SETUP.md) file.
 
 
 ## 🛠️ Architecture Overview
