@@ -6,13 +6,13 @@ script_name=$1
 
 case $script_name in
   "dev")
-    node local-dev.cjs
+    node server/start-local.cjs
     ;;
   "build")
     vite --config vite.config.local.ts build
     ;;
   "start")
-    NODE_ENV=production node local-dev.cjs
+    NODE_ENV=production node server/start-local.cjs
     ;;
   "fix")
     node fix.cjs
