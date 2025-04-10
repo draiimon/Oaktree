@@ -40,7 +40,8 @@ A comprehensive AWS cloud infrastructure management and deployment platform with
 3. **Run the Fix Script (for local environments)**
    ```bash
    # Fix any compatibility issues automatically
-   node fix.cjs
+   chmod +x local-scripts.sh
+   ./local-scripts.sh fix
    ```
 
 4. **Start the application**
@@ -78,10 +79,11 @@ A comprehensive AWS cloud infrastructure management and deployment platform with
 For running on local machines (Windows, Linux, WSL):
 ```bash
 # Fix the local environment issues with one command
-node fix.cjs
+chmod +x local-scripts.sh
+./local-scripts.sh fix
 
-# Then run the app normally
-npm run dev
+# Then run the app in local environment
+./local-scripts.sh dev
 ```
 
 > **Note for WSL/Linux users**: If you still encounter issues, try installing tsx globally with `npm install -g tsx` and run `tsx server/index.ts` directly.
@@ -143,8 +145,10 @@ The platform provides comprehensive real-time monitoring:
 
 These files make the project compatible with local development environments:
 
-- **local-dev.cjs**: Modified server startup script for local environments
-- **fix.cjs**: Automatic compatibility fix script for local environments
+- **server/start-local.cjs**: Modified server startup script for local environments
+- **scripts/fix.cjs**: Automatic compatibility fix script for local environments
+- **scripts/generate-admin-hash.cjs**: Generate admin password hash
+- **local-scripts.sh**: Consolidated script for all local development commands
 - **vite.config.local.ts**: Compatible Vite configuration for local development
 - **LOCAL-SETUP.md**: Comprehensive guide for local setup
 

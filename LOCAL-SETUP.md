@@ -140,7 +140,7 @@ tsx server/index.ts
 Kung nakakakuha ka ng errors tungkol sa `import.meta`, tiyaking na-run mo ang fix script:
 
 ```bash
-node fix.cjs
+./local-scripts.sh fix
 ```
 
 ### Connectivity Issues
@@ -155,9 +155,10 @@ Kung may issues connecting sa AWS:
 
 Ang project na ito ay may mga sumusunod na utility scripts para makatulong sa local development:
 
-- `fix.cjs` - Nag-aayos ng common issues sa local setup
-- `local-dev.cjs` - Server startup script para sa local development
-- `generate-admin-hash.cjs` - Generates admin password hash for local testing
+- `scripts/fix.cjs` - Nag-aayos ng common issues sa local setup
+- `server/start-local.cjs` - Server startup script para sa local development
+- `scripts/generate-admin-hash.cjs` - Generates admin password hash for local testing
+- `local-scripts.sh` - Wrapper script para sa mga local development operations
 
 ## Notes
 
