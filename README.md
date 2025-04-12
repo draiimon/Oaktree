@@ -73,9 +73,6 @@ docker run -p 5000:5000 --env-file .env oaktree:latest
 #### Step 4: Open the App
 Go to [http://localhost:5000](http://localhost:5000) in your browser
 
-#### Step 5: Log In
-- **Username:** `msn_clx`
-- **Password:** `Mason@0905`
 
 ## 📊 Core Features
 
