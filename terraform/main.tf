@@ -2,11 +2,11 @@ provider "aws" {
   region = var.aws_region
 }
 
-# Configure DynamoDB table for users
+# DynamoDB table for users
 resource "aws_dynamodb_table" "oaktree_users" {
-  name           = "OakTreeUsers"
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "username"
+  name         = "OakTreeUsers"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "username"
 
   attribute {
     name = "username"
@@ -20,13 +20,15 @@ resource "aws_dynamodb_table" "oaktree_users" {
   }
 }
 
-# AWS Cognito User Pool
+# Cognito User Pool
 resource "aws_cognito_user_pool" "oaktree_users" {
   name = "oaktree-user-pool-${var.environment}"
 
-  username_attributes      = ["email"]
-  auto_verify_attributes   = ["email"]
-  
+  username_attributes = ["email"]
+  verification_message_template {
+    default_email_option = "CONFIRM_WITH_LINK"
+  }
+
   password_policy {
     minimum_length    = 8
     require_lowercase = true
@@ -57,16 +59,15 @@ resource "aws_cognito_user_pool" "oaktree_users" {
 
 # Cognito User Pool Client
 resource "aws_cognito_user_pool_client" "oaktree_client" {
-  name                = "oaktree-app-client"
-  user_pool_id        = aws_cognito_user_pool.oaktree_users.id
-  explicit_auth_flows = ["ALLOW_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH"]
-  
+  name                        = "oaktree-app-client"
+  user_pool_id                = aws_cognito_user_pool.oaktree_users.id
+  explicit_auth_flows         = ["ALLOW_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH"]
   prevent_user_existence_errors = "ENABLED"
-  access_token_validity        = 24
-  refresh_token_validity       = 30
+  access_token_validity       = 24
+  refresh_token_validity      = 30
 }
 
-# ECS Cluster for Docker Deployment
+# ECS Cluster
 resource "aws_ecs_cluster" "oaktree_cluster" {
   name = "oaktree-cluster-${var.environment}"
 
@@ -81,7 +82,7 @@ resource "aws_ecs_cluster" "oaktree_cluster" {
   }
 }
 
-# ECR Repository for Docker Images
+# ECR Repo
 resource "aws_ecr_repository" "oaktree_repository" {
   name                 = "oaktree-app-${var.environment}"
   image_tag_mutability = "MUTABLE"
@@ -96,7 +97,7 @@ resource "aws_ecr_repository" "oaktree_repository" {
   }
 }
 
-# Security Group for ECS Tasks
+# ECS Security Group
 resource "aws_security_group" "ecs_tasks" {
   name        = "oaktree-ecs-tasks-sg"
   description = "Allow inbound traffic to ECS tasks"
@@ -122,7 +123,7 @@ resource "aws_security_group" "ecs_tasks" {
   }
 }
 
-# ECS Task Definition
+# Task Definition
 resource "aws_ecs_task_definition" "oaktree_task" {
   family                   = "oaktree-app"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
@@ -132,47 +133,31 @@ resource "aws_ecs_task_definition" "oaktree_task" {
   cpu                      = "256"
   memory                   = "512"
 
-  container_definitions = jsonencode([
-    {
-      name      = "oaktree-app"
-      image     = "${aws_ecr_repository.oaktree_repository.repository_url}:latest"
-      cpu       = 256
-      memory    = 512
-      essential = true
-      portMappings = [
-        {
-          containerPort = 5000
-          hostPort      = 5000
-        }
-      ]
-      environment = [
-        {
-          name  = "NODE_ENV"
-          value = "production"
-        },
-        {
-          name  = "AWS_REGION"
-          value = var.aws_region
-        },
-        {
-          name  = "AWS_COGNITO_USER_POOL_ID"
-          value = aws_cognito_user_pool.oaktree_users.id
-        },
-        {
-          name  = "AWS_COGNITO_CLIENT_ID"
-          value = aws_cognito_user_pool_client.oaktree_client.id
-        }
-      ]
-      logConfiguration = {
-        logDriver = "awslogs"
-        options = {
-          "awslogs-group"         = "/ecs/oaktree-app"
-          "awslogs-region"        = var.aws_region
-          "awslogs-stream-prefix" = "ecs"
-        }
+  container_definitions = jsonencode([{
+    name      = "oaktree-app"
+    image     = "${aws_ecr_repository.oaktree_repository.repository_url}:latest"
+    cpu       = 256
+    memory    = 512
+    essential = true
+    portMappings = [{
+      containerPort = 5000
+      hostPort      = 5000
+    }]
+    environment = [
+      { name = "NODE_ENV", value = "production" },
+      { name = "AWS_REGION", value = var.aws_region },
+      { name = "AWS_COGNITO_USER_POOL_ID", value = aws_cognito_user_pool.oaktree_users.id },
+      { name = "AWS_COGNITO_CLIENT_ID", value = aws_cognito_user_pool_client.oaktree_client.id }
+    ]
+    logConfiguration = {
+      logDriver = "awslogs"
+      options = {
+        awslogs-group         = "/ecs/oaktree-app"
+        awslogs-region        = var.aws_region
+        awslogs-stream-prefix = "ecs"
       }
     }
-  ])
+  }])
 
   tags = {
     Environment = var.environment
@@ -180,21 +165,17 @@ resource "aws_ecs_task_definition" "oaktree_task" {
   }
 }
 
-# IAM Role for ECS Task Execution
+# IAM Role for ECS Execution
 resource "aws_iam_role" "ecs_task_execution_role" {
   name = "oaktree-ecs-task-execution-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
-    Statement = [
-      {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Principal = {
-          Service = "ecs-tasks.amazonaws.com"
-        }
-      }
-    ]
+    Statement = [{
+      Effect = "Allow"
+      Principal = { Service = "ecs-tasks.amazonaws.com" }
+      Action = "sts:AssumeRole"
+    }]
   })
 
   tags = {
@@ -203,27 +184,22 @@ resource "aws_iam_role" "ecs_task_execution_role" {
   }
 }
 
-# Attach policy to ECS Task Execution Role
 resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_policy" {
   role       = aws_iam_role.ecs_task_execution_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
-# IAM Role for ECS Task
+# IAM Role for ECS Tasks
 resource "aws_iam_role" "ecs_task_role" {
   name = "oaktree-ecs-task-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
-    Statement = [
-      {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Principal = {
-          Service = "ecs-tasks.amazonaws.com"
-        }
-      }
-    ]
+    Statement = [{
+      Effect = "Allow"
+      Principal = { Service = "ecs-tasks.amazonaws.com" }
+      Action = "sts:AssumeRole"
+    }]
   })
 
   tags = {
@@ -232,41 +208,36 @@ resource "aws_iam_role" "ecs_task_role" {
   }
 }
 
-# Policy for DynamoDB access
+# IAM Policy for DynamoDB access
 resource "aws_iam_policy" "dynamodb_access" {
   name        = "oaktree-dynamodb-access"
   description = "Allow access to OakTree DynamoDB table"
 
   policy = jsonencode({
     Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Action = [
-          "dynamodb:BatchGetItem",
-          "dynamodb:BatchWriteItem",
-          "dynamodb:PutItem",
-          "dynamodb:GetItem",
-          "dynamodb:UpdateItem",
-          "dynamodb:DeleteItem",
-          "dynamodb:Query",
-          "dynamodb:Scan"
-        ]
-        Resource = [
-          aws_dynamodb_table.oaktree_users.arn
-        ]
-      }
-    ]
+    Statement = [{
+      Effect = "Allow"
+      Action = [
+        "dynamodb:BatchGetItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:PutItem",
+        "dynamodb:GetItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:Query",
+        "dynamodb:Scan"
+      ]
+      Resource = [aws_dynamodb_table.oaktree_users.arn]
+    }]
   })
 }
 
-# Attach DynamoDB policy to ECS Task Role
 resource "aws_iam_role_policy_attachment" "ecs_task_role_dynamodb" {
   role       = aws_iam_role.ecs_task_role.name
   policy_arn = aws_iam_policy.dynamodb_access.arn
 }
 
-# CloudWatch Log Group for ECS
+# CloudWatch Logs
 resource "aws_cloudwatch_log_group" "oaktree_logs" {
   name              = "/ecs/oaktree-app"
   retention_in_days = 30
@@ -282,16 +253,14 @@ resource "aws_ecs_service" "oaktree_service" {
   name            = "oaktree-service"
   cluster         = aws_ecs_cluster.oaktree_cluster.id
   task_definition = aws_ecs_task_definition.oaktree_task.arn
-  desired_count   = 2  # Running 2 instances for high availability
+  desired_count   = 2
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets          = var.subnet_ids  # Using the real subnet IDs from your account
+    subnets          = var.subnet_ids
     security_groups  = [aws_security_group.ecs_tasks.id]
     assign_public_ip = true
   }
-
-  # Auto-scaling configurations could be added here in the future
 
   tags = {
     Environment = var.environment
