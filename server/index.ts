@@ -1,6 +1,5 @@
-// Load environment variables first
-import './env';
-
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
@@ -8,7 +7,9 @@ import { setupAuth } from "./auth";
 import { createUsersTable, isAWSConfigured } from "./aws-db";
 import { logAwsConfig } from './env';
 
-// Initialize AWS DynamoDB
+// Define __dirname equivalent for ES modules
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 const checkAwsConfig = async () => {
   if (!isAWSConfigured()) {
     console.error("AWS environment variables not configured properly");
